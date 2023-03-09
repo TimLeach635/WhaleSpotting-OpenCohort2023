@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WhaleSpotting", "WhaleSpotting\WhaleSpotting.csproj", "{2B21C461-78B3-48BF-9202-3CCA38010035}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WhaleSpotting", "WhaleSpotting\WhaleSpotting.csproj", "{F681C8EF-E7E6-43E1-BF12-A2445520FD79}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -8,9 +8,9 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2B21C461-78B3-48BF-9202-3CCA38010035}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2B21C461-78B3-48BF-9202-3CCA38010035}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2B21C461-78B3-48BF-9202-3CCA38010035}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2B21C461-78B3-48BF-9202-3CCA38010035}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F681C8EF-E7E6-43E1-BF12-A2445520FD79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F681C8EF-E7E6-43E1-BF12-A2445520FD79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F681C8EF-E7E6-43E1-BF12-A2445520FD79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F681C8EF-E7E6-43E1-BF12-A2445520FD79}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
