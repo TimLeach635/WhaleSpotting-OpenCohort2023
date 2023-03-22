@@ -45,3 +45,9 @@ Before you run the app you will need to make sure you've got Postgres installed 
 1. Inside your `PostgreSQL <version number>` server, right-click on Databases and create a new Database with the name `whale-spotting` and the owner `whale-spotting` (both in the General tab).
 
 2. Click `Save` to create the database.
+
+## Adding pages
+
+Pages related to accounts and Identity are all in `/Areas/Identity/Pages`. There are a lot of files in here, but don't worry: they were all automatically generated. If, for example, you want to make changes to the login page, then you can do so by editing `/Areas/Identity/Pages/Account/Login.cshtml`.
+
+To add other pages not related to user accounts, the views can be found in the `/Views` directory. Refer to `/Views/Home/Index.cshtml` for examples.
