@@ -20,7 +20,7 @@
    
    If this fails, it's usually because the login details are wrong—check the connection string in `appsettings.json` or `appsettings.Development.json`, and ensure you have set up the user in Postgres.
 8. Run the app with `dotnet run`.
-9. The app should now be available at `https://localhost:7132`.
+9. The app should now be available at `https://localhost:7132`
 
 ## Setting up Postgres
 
