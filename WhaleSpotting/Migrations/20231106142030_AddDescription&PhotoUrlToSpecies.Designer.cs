@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using WhaleSpotting.Data;
@@ -11,9 +12,10 @@ using WhaleSpotting.Data;
 namespace WhaleSpotting.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231106142030_AddDescription&PhotoUrlToSpecies")]
+    partial class AddDescriptionPhotoUrlToSpecies
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -222,27 +224,6 @@ namespace WhaleSpotting.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("WhaleSpotting.Photo", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Image")
-                        .HasColumnType("text");
-
-                    b.Property<int?>("SightingId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("SightingId");
-
-                    b.ToTable("Photos");
-                });
-
             modelBuilder.Entity("WhaleSpotting.Sighting", b =>
                 {
                     b.Property<int>("Id")
@@ -339,15 +320,6 @@ namespace WhaleSpotting.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("WhaleSpotting.Photo", b =>
-                {
-                    b.HasOne("WhaleSpotting.Sighting", "Sighting")
-                        .WithMany()
-                        .HasForeignKey("SightingId");
-
-                    b.Navigation("Sighting");
                 });
 #pragma warning restore 612, 618
         }
