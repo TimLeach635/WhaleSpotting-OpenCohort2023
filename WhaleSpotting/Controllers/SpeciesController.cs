@@ -1,29 +1,37 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WhaleSpotting.Data;
 using WhaleSpotting.Models;
 using Microsoft.Extensions.Logging;
 
-namespace WhaleSpotting.Controllers
+namespace WhaleSpotting.Controllers;
+
+public class SpeciesController : Controller
 {
-    public class SpeciesController : Controller
+    private readonly ILogger<SpeciesController> _logger;
+    private readonly ApplicationDbContext _context;
+
+    public SpeciesController(ILogger<SpeciesController> logger,
+        ApplicationDbContext context)
     {
-        private readonly ApplicationDbContext _context;
-        private readonly ILogger<SpeciesController> _logger;
+        _logger = logger;
+        _context = context;
+    }
 
-        public SpeciesController(ApplicationDbContext context, ILogger<SpeciesController> logger)
-        {
-            _context = context;
-            _logger = logger;
-        }
+    [HttpGet("{id}")]
+    public IActionResult UniqueSpecies([FromRoute] int id)
+    {
+        var species = _context.Species;
+        var uniqueSpecies= species!.Single(s => s.Id == id);
 
-       public IActionResult Species()
-        {
-            var species = _context.Species!
-                .ToList();
+        return View(uniqueSpecies);
+    }
 
-            return View(species);
-        }
+    public IActionResult Species()
+    {
+        var species = _context.Species!
+            .ToList();
 
+        return View(species);
     }
 }
