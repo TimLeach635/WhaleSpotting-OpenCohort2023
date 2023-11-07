@@ -1,0 +1,35 @@
+@model WhaleSpotting.Sighting
+
+<section>
+  <form method="post">
+    <div>
+      <label for="Latitude">Latitude:</label>
+      <input asp-for="Latitude" class="form-control" />
+    </div>
+
+    <div>
+      <label for="Longitude">Longitude:</label>
+      <input asp-for="Longitude" class="form-control" />
+    </div>
+
+    <div>
+      <label for="Date">Date:</label>
+      <input asp-for="Date" type="date" class="form-control" />
+    </div>
+
+    <div>
+      <label for="Description">Description:</label>
+      <textarea asp-for="Description" class="form-control"></textarea>
+    </div>
+
+    <div>
+      <label for="SpeciesId">Species:</label>
+      <select asp-for="SpeciesId" asp-items="Model.SpeciesList" class="form-control">
+        <option value="">Select a species</option>
+      </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+
+</section>
