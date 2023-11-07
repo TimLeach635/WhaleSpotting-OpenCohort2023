@@ -25,4 +25,13 @@ public class SightingController : Controller
 
         return View(sightings);
     }
+
+    [HttpPost("")]
+    public IActionResult NewSighting([FromForm] Sighting newSighting)
+    {
+        _context.Sightings?.Add(newSighting);
+        _context.SaveChanges();
+
+        return Ok();
+    }
 }
