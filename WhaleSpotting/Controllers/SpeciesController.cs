@@ -15,6 +15,16 @@ public class SpeciesController : Controller
         _logger = logger;
         _context = context;
     }
+
+    [HttpGet("{id}")]
+    public IActionResult UniqueSpecies([FromRoute] int id)
+    {
+        var species = _context.Species;
+        var uniqueSpecies= species!.Single(s => s.Id == id);
+
+        return View(uniqueSpecies);
+    }
+
     public IActionResult Index()
     {
         var context = _context.Species!.ToList();
