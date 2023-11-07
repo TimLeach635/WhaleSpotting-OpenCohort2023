@@ -27,7 +27,7 @@ public class SpeciesController : Controller
 
     public IActionResult Index()
     {
-        var context = _context.Species!.ToList();
-        return View(context);
+        var species = _context.Species!.ToList();
+        return View(species);
     }
 }
