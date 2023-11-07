@@ -34,12 +34,15 @@ public class SightingController : Controller
 
         return Ok();
     }
+
+    [HttpGet("new")]
+    public IActionResult NewSightingForm()
+    {
+
+        return View();
+    }
+
 }
 
-[HttpGet("new")]
-public IActionResult NewSightingForm()
-{
 
-    return View();
-}
 
