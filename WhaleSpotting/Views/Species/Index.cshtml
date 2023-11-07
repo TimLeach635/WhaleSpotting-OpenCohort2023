@@ -1,0 +1,55 @@
+@model List<Species>
+    @{
+    ViewData["Title"] = "collection of species";
+}
+
+     <style>
+    body
+    {
+        background-color: rgb(50, 50, 50);
+    }
+    .text
+    {
+        color: antiquewhite;
+        width: 50%;
+        padding: 20px;
+    }
+    .header
+    {
+        color: antiquewhite;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    }
+    .title
+    {
+        color: antiquewhite;
+        text-align: center;
+    }
+    .container
+    {
+        display: flex;
+        align-items: flex-start;
+    }
+    .image
+    {
+        width: 50%;
+    }
+    br 
+    {
+        display: block;
+        margin: 10px 0;
+    }
+    </style> 
+
+    <h1 class="title">Here's our collection of Whales</h1>
+        @foreach (var specie in Model)
+        {
+            <br> </br>
+            <h2 class="title">@specie.Name</h2>
+            <div class="container">
+                <img src="@specie.PhotoUrl" alt="photo of @specie.Name">
+                <div class="text"> 
+                    @specie.Description
+                </div>
+            </div>
+        }
+        
