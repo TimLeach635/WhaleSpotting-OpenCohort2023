@@ -1,0 +1,19 @@
+@model List<WhaleSpotting.Sighting>
+@{
+    ViewData["Title"] = "Sightings";
+    }
+ 
+    <div class="text-center">
+        <h1 class="Sighting">Sighting Location</h1>
+        <<ul>
+            @foreach (var sighting in Model)
+            {
+                <li>
+                    
+                     @sighting.Latitude, @sighting.Longitude
+                    
+                </li>
+            }
+        </ul>
+    </div>
+}

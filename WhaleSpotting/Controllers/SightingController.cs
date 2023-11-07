@@ -25,4 +25,17 @@ public class SightingController : Controller
 
         return View(sightings);
     }
+
+    public IActionResult SightingLocation()
+    {
+        
+    var longitudesAndLatitudes = _context.Sightings!
+        .Select(s => new WhaleSpotting.Sighting { Longitude = s.Longitude, Latitude = s.Latitude})
+        .ToList();
+
+   
+   
+    return View(longitudesAndLatitudes);
+
+    }
 }
