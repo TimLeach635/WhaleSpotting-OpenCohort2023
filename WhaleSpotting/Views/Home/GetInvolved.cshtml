@@ -1,5 +1,14 @@
-﻿@{
+﻿@model List<Website>;
+@{
     ViewData["Title"] = "Get Involved";
 }
 
 <h1>Get Involved</h1>
+<ul>
+    @foreach (var website in Model)
+    {
+        <li>
+            @website.Name
+        </li>
+    }
+</ul>
