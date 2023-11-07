@@ -4,6 +4,7 @@ using WhaleSpotting.Models;
 
 namespace WhaleSpotting.Controllers;
 
+[Route("species")]
 public class SpeciesController : Controller
 {
     private readonly ILogger<SpeciesController> _logger;
