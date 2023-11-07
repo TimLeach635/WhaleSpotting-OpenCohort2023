@@ -1,8 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using WhaleSpotting.Data;
 using WhaleSpotting.Models;
-using Microsoft.Extensions.Logging;
 
 namespace WhaleSpotting.Controllers;
 
