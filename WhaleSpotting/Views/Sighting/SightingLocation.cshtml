@@ -20,7 +20,7 @@
         {
             <text>
                 L.marker([@sighting.Latitude, @sighting.Longitude]).addTo(map)
-                    .bindPopup();
+                    .bindPopup("@sighting.Description");
             </text>
         }
     </script>
