@@ -26,4 +26,37 @@ public class UserController : Controller
 
         return View(user);
     }
+
+    [HttpPost("{id}")]
+
+    public IActionResult EditUser
+    (
+        [FromRoute] int id,
+        [FromForm] WsUser modifiedUser
+    )
+    
+    {
+        var user = _context.WsUsers!
+            .Single(u => u.Id == id);
+
+        if (!string.IsNullOrEmpty(modifiedUser.Name))
+        {
+            user.Name = modifiedUser.Name;
+        }
+
+        if (!string.IsNullOrEmpty(modifiedUser.ProfileImageUrl))
+        {
+           user.ProfileImageUrl = modifiedUser.ProfileImageUrl; 
+        }
+
+        if (!string.IsNullOrEmpty(modifiedUser.Bio))
+        {
+            user.Bio = modifiedUser.Bio;
+        }
+
+        _context.SaveChanges();
+
+        return Ok();
+
+    }
 }
