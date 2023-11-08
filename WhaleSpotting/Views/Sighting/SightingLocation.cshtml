@@ -1,19 +1,34 @@
 @model List<WhaleSpotting.Sighting>
 @{
+    
     ViewData["Title"] = "Sightings";
     }
  
     <div class="text-center">
         <h1 class="Sighting">Sighting Location</h1>
-        <<ul>
-            @foreach (var sighting in Model)
-            {
-                <li>
-                    
-                     @sighting.Latitude, @sighting.Longitude
-                    
-                </li>
-            }
-        </ul>
+
+
+        <div id="map" style="height: 400px;"></div>
+        <div id="map"></div>
+
     </div>
+}
+@section Scripts {
+    <script>
+        
+        var map = L.map('map').setView([51.505, -0.09], 13);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        @foreach (var sighting in Model)
+        {
+            <text>
+            L.marker([@sighting.Latitude, @sighting.Longitude]).addTo(map)
+                .bindPopup();
+            </text>
+        }
+
+    </script>
 }
