@@ -9,15 +9,17 @@
 
 <div>
     
-        <ul class="card">
-            <div class="card-body"></div>
+        <ul>
+            
                 @foreach (var sighting in @Model.Sightings)
                 {
-                    <li>
-                        <h4 class="card-title">@sighting.Date</h4>
-                        <p class="card-text"> Latitute: @sighting.Latitude Longitude: @sighting.Longitude</p>
-                        <p class="card-text"> Description of Sighting:</p>
-                        <p class="card-text"> @sighting.Description</p>
+                    <li class="card" style="width: 18rem">
+                        <div class="card-body">
+                            <h4 class="card-title">@sighting.Date</h4>
+                            <p class="card-text"> Latitute: @sighting.Latitude Longitude: @sighting.Longitude</p>
+                            <p class="card-text"> Description of Sighting:</p>
+                            <p class="card-text"> @sighting.Description</p>
+                        </div>
                     </li>
                 }
             </div>
