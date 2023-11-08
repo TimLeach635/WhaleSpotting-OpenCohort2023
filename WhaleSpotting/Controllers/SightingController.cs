@@ -34,4 +34,12 @@ public class SightingController : Controller
 
         return View(longitudesAndLatitudes);
     }
+    [HttpPost("")]
+    public IActionResult NewSighting([FromForm] Sighting newSighting)
+    {
+        _context.Sightings?.Add(newSighting);
+        _context.SaveChanges();
+
+        return Ok();
+    }
 }

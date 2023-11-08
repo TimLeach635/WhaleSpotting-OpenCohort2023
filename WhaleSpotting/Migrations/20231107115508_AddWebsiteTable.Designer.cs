@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using WhaleSpotting.Data;
@@ -11,9 +12,10 @@ using WhaleSpotting.Data;
 namespace WhaleSpotting.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231107115508_AddWebsiteTable")]
+    partial class AddWebsiteTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -222,24 +224,6 @@ namespace WhaleSpotting.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("WhaleSpotting.Models.WsUser", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("IdentityUserId")
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IdentityUserId");
-
-                    b.ToTable("WsUsers");
-                });
-
             modelBuilder.Entity("WhaleSpotting.Photo", b =>
                 {
                     b.Property<int>("Id")
@@ -281,12 +265,7 @@ namespace WhaleSpotting.Migrations
                     b.Property<float>("Longitude")
                         .HasColumnType("real");
 
-                    b.Property<int?>("UserId")
-                        .HasColumnType("integer");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Sightings");
                 });
@@ -383,15 +362,6 @@ namespace WhaleSpotting.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("WhaleSpotting.Models.WsUser", b =>
-                {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
-                        .WithMany()
-                        .HasForeignKey("IdentityUserId");
-
-                    b.Navigation("IdentityUser");
-                });
-
             modelBuilder.Entity("WhaleSpotting.Photo", b =>
                 {
                     b.HasOne("WhaleSpotting.Sighting", "Sighting")
@@ -399,20 +369,6 @@ namespace WhaleSpotting.Migrations
                         .HasForeignKey("SightingId");
 
                     b.Navigation("Sighting");
-                });
-
-            modelBuilder.Entity("WhaleSpotting.Sighting", b =>
-                {
-                    b.HasOne("WhaleSpotting.Models.WsUser", "User")
-                        .WithMany("Sightings")
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("WhaleSpotting.Models.WsUser", b =>
-                {
-                    b.Navigation("Sightings");
                 });
 #pragma warning restore 612, 618
         }
