@@ -22,6 +22,7 @@ public class SightingController : Controller
     {
         var approvedSightings = _context.Sightings!
             .Where(sighting => sighting.Approved)
+            .Include(s => s.User)
             .ToList();
 
         return View(approvedSightings);
