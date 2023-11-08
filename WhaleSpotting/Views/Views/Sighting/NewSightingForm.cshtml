@@ -1,6 +1,9 @@
 @model WhaleSpotting.Sighting
+@{
+    ViewData["Title"] = "Sightings";
+}
 <section>
-  <form method="post">
+  <form method="post" asp-controller="Sighting" asp-action="NewSighting">
     <div>
       <label for="Latitude">Latitude:</label>
       <input class="form-control" asp-for="Latitude" />
