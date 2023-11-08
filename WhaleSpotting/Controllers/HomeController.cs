@@ -1,7 +1,9 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using WhaleSpotting.Data;
 using WhaleSpotting.Models;
+using WhaleSpotting.ViewModels;
 
 namespace WhaleSpotting.Controllers;
 
@@ -18,31 +20,25 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        return View();
+        var lastweek = DateOnly.FromDateTime(DateTime.UtcNow.AddDays(-7));
+
+        var lastWeekPhotos = _context.Photos!
+            .Include(p => p.Sighting)
+            .Where(p => p.Sighting != null && p.Sighting.Date >= lastweek)
+            .ToList();
+
+        var viewModel = new HomeViewModel
+        {
+            LastWeekPhotos = lastWeekPhotos,
+        };
+
+        return View(viewModel);
     }
 
     public IActionResult Privacy()
     {
         return View();
     }
-
-        [Route("api/images/lastweek")]
-        [HttpGet]
-        public IActionResult GetImagesFromLastWeek()
-        {
-            var lastweek = DateOnly.FromDateTime(DateTime.UtcNow.AddDays(-7));
-
-            var sightings = _context.Sightings!
-                .Where(sighting => sighting.Date >= lastweek)
-                .ToList();
-
-            if (sightings == null || sightings.Count == 0)
-            {
-                return NotFound("No images found from the last week.");
-            }
-
-            return Ok(sightings);
-        }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
