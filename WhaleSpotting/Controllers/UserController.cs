@@ -5,6 +5,8 @@ using WhaleSpotting.Data;
 using WhaleSpotting.Models;
 
 namespace WhaleSpotting.Controllers;
+
+[Route("users")]
 public class UserController : Controller
 {
     private readonly ILogger<UserController> _logger;
