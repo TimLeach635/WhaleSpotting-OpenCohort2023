@@ -10,8 +10,7 @@ public class SpeciesController : Controller
     private readonly ILogger<SpeciesController> _logger;
     private readonly ApplicationDbContext _context;
 
-    public SpeciesController(ILogger<SpeciesController> logger,
-        ApplicationDbContext context)
+    public SpeciesController(ILogger<SpeciesController> logger, ApplicationDbContext context)
     {
         _logger = logger;
         _context = context;
@@ -26,11 +25,9 @@ public class SpeciesController : Controller
         return View(uniqueSpecies);
     }
 
-    public IActionResult Species()
+    public IActionResult Index()
     {
-        var species = _context.Species!
-            .ToList();
-
+        var species = _context.Species!.ToList();
         return View(species);
     }
 }
