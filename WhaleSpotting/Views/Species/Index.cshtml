@@ -1,0 +1,23 @@
+﻿@model List<Species>
+@{
+    ViewData["Title"] = "Species List";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Species List</h1>
+    <div class="row row-cols-1 row-cols-md-3 g-4"></div>
+    @foreach (var species in Model)
+    {
+        <div class="col">
+            <div class="card h-100">
+                <img src="@species.PhotoUrl" class="card-img-top" alt="@species.Name photo">
+                <div class="card-body">
+                    <a asp-controller="Species" asp-action="UniqueSpecies" asp-route-id="@species.Id">
+                    <h5 class="card-title">@species.Name</h5>
+                    </a>
+                </div>
+            </div>
+        </div>
+    }
+    </div>
+</div>
