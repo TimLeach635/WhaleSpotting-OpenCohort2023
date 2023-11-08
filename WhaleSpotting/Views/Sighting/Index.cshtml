@@ -1,0 +1,22 @@
+﻿@model List<Sighting>;
+@{
+    ViewData["Title"] = "Sightings";
+}
+
+<div class="text-center">
+    <h1>Sightings</h1>
+    <ul> 
+        @foreach (var sighting in Model)
+        {
+            <li class="my-3 container card rounded-3" style="width: 18rem;">
+                <img class="card-img-top" src="..." alt="Card image">
+                <div class="card-body">
+                    <p class="card-text">@sighting.Latitude</p>
+                    <p class="card-text">@sighting.Longitude</p>
+                    <p class="card-text">@sighting.Date</p>
+                    <p class="card-text">@sighting.Description</p>
+                </div>
+            </li>
+        }
+    </ul>
+</div>
