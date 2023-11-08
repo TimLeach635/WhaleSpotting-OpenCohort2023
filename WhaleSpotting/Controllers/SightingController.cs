@@ -28,11 +28,10 @@ public class SightingController : Controller
 
     public IActionResult SightingLocation()
     {   
-        var longitudesAndLatitudes = _context.Sightings!
-            .Select(s => new WhaleSpotting.Sighting { Longitude = s.Longitude, Latitude = s.Latitude, Description = s.Description})
+        var sightings = _context.Sightings!
             .ToList();
 
-        return View(longitudesAndLatitudes);
+        return View(sightings);
     }
     [HttpPost("")]
     public IActionResult NewSighting([FromForm] Sighting newSighting)
