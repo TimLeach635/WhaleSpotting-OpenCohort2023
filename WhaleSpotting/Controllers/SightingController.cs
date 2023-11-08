@@ -21,6 +21,7 @@ public class SightingController : Controller
     public IActionResult Index()
     {
         var sightings = _context.Sightings!
+            .Include(s => s.User)
             .ToList();
 
         return View(sightings);
