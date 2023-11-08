@@ -12,7 +12,7 @@
             <div class="card h-100">
                 <img src="@species.PhotoUrl" class="card-img-top" alt="@species.Name photo">
                 <div class="card-body">
-                    <a asp-controller="Species" asp-action="Species" asp-route-id="@species.Id">
+                    <a asp-controller="Species" asp-action="UniqueSpecies" asp-route-id="@species.Id">
                     <h5 class="card-title">@species.Name</h5>
                     </a>
                 </div>
