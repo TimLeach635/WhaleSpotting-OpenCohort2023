@@ -1,0 +1,12 @@
+@model Species
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+<div class="card mb-3">
+  <img src="@Model.PhotoUrl" class="card-img-top" alt="@Model.Name photo">
+  <div class="card-body">
+    <h5 class="card-title">@Model.Name</h5>
+    <p class="card-text">@Model.Description</p>
+  </div>
+</div>

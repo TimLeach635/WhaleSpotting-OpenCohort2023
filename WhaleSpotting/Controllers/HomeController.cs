@@ -1,7 +1,9 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using WhaleSpotting.Data;
 using WhaleSpotting.Models;
+using WhaleSpotting.ViewModels;
 
 namespace WhaleSpotting.Controllers;
 
@@ -10,8 +12,7 @@ public class HomeController : Controller
     private readonly ILogger<HomeController> _logger;
     private readonly ApplicationDbContext _context;
 
-    public HomeController(ILogger<HomeController> logger,
-        ApplicationDbContext context)
+    public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
     {
         _logger = logger;
         _context = context;
@@ -19,7 +20,19 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        return View();
+        var lastweek = DateOnly.FromDateTime(DateTime.UtcNow.AddDays(-7));
+
+        var lastWeekPhotos = _context.Photos!
+            .Include(p => p.Sighting)
+            .Where(p => p.Sighting != null && p.Sighting.Date >= lastweek)
+            .ToList();
+
+        var viewModel = new HomeViewModel
+        {
+            LastWeekPhotos = lastWeekPhotos,
+        };
+
+        return View(viewModel);
     }
 
     public IActionResult GetInvolved()
