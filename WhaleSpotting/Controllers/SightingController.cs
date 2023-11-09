@@ -43,7 +43,7 @@ public class SightingController : Controller
 
         return Ok();
     }
-    [HttpGet("new")]
+    [HttpGet]
     public IActionResult NewSightingForm()
     {
         return View();
