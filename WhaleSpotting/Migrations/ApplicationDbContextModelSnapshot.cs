@@ -410,7 +410,7 @@ namespace WhaleSpotting.Migrations
             modelBuilder.Entity("WhaleSpotting.Photo", b =>
                 {
                     b.HasOne("WhaleSpotting.Sighting", "Sighting")
-                        .WithMany()
+                        .WithMany("Photos")
                         .HasForeignKey("SightingId");
 
                     b.Navigation("Sighting");
@@ -428,6 +428,11 @@ namespace WhaleSpotting.Migrations
             modelBuilder.Entity("WhaleSpotting.Models.WsUser", b =>
                 {
                     b.Navigation("Sightings");
+                });
+
+            modelBuilder.Entity("WhaleSpotting.Sighting", b =>
+                {
+                    b.Navigation("Photos");
                 });
 #pragma warning restore 612, 618
         }
