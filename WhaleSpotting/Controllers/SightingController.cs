@@ -22,16 +22,21 @@ public class SightingController : Controller
 
     public IActionResult Index()
     {
-        // dynamic mymodel = new ExpandoObject();
-        // mymodel.sightings = _context.Sightings!.ToList();
-        // mymodel.photos = _context.Photos!.ToList();
+        var approvedSightings = _context.Sightings!
+            .Where(sighting => sighting.Approved)
+            .Include(s => s.User)
+            .ToList();
 
+        return View(approvedSightings);
+    }
+
+    public IActionResult SightingLocation()
+    {
         var sightings = _context.Sightings!
             .Include(s => s.Photos)
             .ToList();
         return View(sightings);
     }
-
     [HttpPost("")]
     public IActionResult NewSighting([FromForm] Sighting newSighting)
     {
@@ -40,4 +45,11 @@ public class SightingController : Controller
 
         return Ok();
     }
+    [HttpGet]
+    public IActionResult NewSightingForm()
+    {
+        return View();
+    }
+
 }
+
