@@ -8,34 +8,34 @@
     <h1>Sightings</h1>
 </div>
 
-@for (int i=0; i< Model.Count; i++)
+@foreach (var sighting in Model)
 {
     <ul style="list-style: none; padding: 0;">
         <div class="my-3 container card rounded-3" style="width: 18rem; float:left; margin:10px;">
 
-            <div id="carousel@(i)" class="carousel slide" data-ride="carousel">
+            <div id="carousel_@(sighting.Id)" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
 
-                    @for (int j = 0; j < Model[i].Photos!.Count; j++)
+                    @foreach (var photo in sighting.Photos!)
                     {
-                        <div class="carousel-item @(j == 0 ? "active" : "")">
-                            <img  class="card-img-top" width="318" height="318" src="@Model[i].Photos![j].Image" alt="Image @(j + 1)">
+                        <div class="carousel-item @(photo == sighting.Photos.First() ? "active" : "")">
+                            <img  class="card-img-top" width="318" height="318" src="@photo.Image" alt="A picture of a whale sighting">
                         </div>
                     }        
-                    <a class="carousel-control-prev" href="#carousel@(i)" role="button" data-slide="prev">
+                    <a class="carousel-control-prev" href="#carousel_@(sighting.Id)" role="button" data-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="sr-only"></span>
                     </a>
-                    <a class="carousel-control-next" href="#carousel@(i)" role="button" data-slide="next">
+                    <a class="carousel-control-next" href="#carousel_@(sighting.Id)" role="button" data-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="sr-only"></span>
                     </a>
                 </div>        
                 <div class="card-body">
-                    <p class="card-text">Latitude: @Model[i].Latitude</p>
-                    <p class="card-text">Longitude: @Model[i].Longitude</p>
-                    <p class="card-text">Date: @Model[i].Date</p>
-                    <p class="card-text">Description: @Model[i].Description</p>
+                    <p class="card-text">Latitude: @sighting.Latitude</p>
+                    <p class="card-text">Longitude: @sighting.Longitude</p>
+                    <p class="card-text">Date: @sighting.Date</p>
+                    <p class="card-text">Description: @sighting.Description</p>
                 </div>
             </div>
         </div>
