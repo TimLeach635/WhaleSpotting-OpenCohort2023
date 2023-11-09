@@ -10,4 +10,5 @@ public class Sighting
     public float Longitude { get; set; }
     public DateOnly Date { get; set; }
     public string? Description { get; set; }
+    public Boolean Approved { get; set; }
 }
