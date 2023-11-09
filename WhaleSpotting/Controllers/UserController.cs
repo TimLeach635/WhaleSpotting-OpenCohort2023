@@ -28,14 +28,11 @@ public class UserController : Controller
     }
 
     [HttpPost("{id}")]
-
     public IActionResult EditUser
     (
         [FromRoute] int id,
         [FromForm] WsUser modifiedUser
-    )
-    
-    {
+    ) {
         var user = _context.WsUsers!
             .Single(u => u.Id == id);
 
@@ -57,6 +54,5 @@ public class UserController : Controller
         _context.SaveChanges();
 
         return Ok();
-
     }
 }
