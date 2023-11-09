@@ -20,11 +20,12 @@ public class SightingController : Controller
 
     public IActionResult Index()
     {
-        var sightings = _context.Sightings!
+        var approvedSightings = _context.Sightings!
+            .Where(sighting => sighting.Approved)
             .Include(s => s.User)
             .ToList();
 
-        return View(sightings);
+        return View(approvedSightings);
     }
 
     public IActionResult SightingLocation()
