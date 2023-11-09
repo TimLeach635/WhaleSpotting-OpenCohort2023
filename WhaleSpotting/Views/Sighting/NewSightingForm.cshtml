@@ -9,26 +9,26 @@
 
 <section>
   <form method="post" asp-controller="Sighting" asp-action="NewSighting">
-    <div>
+    <div class="my-2">
       <label for="Latitude">Latitude:</label>
       <input class="form-control" asp-for="Latitude" />
     </div>
 
-    <div>
+    <div class="my-2">
       <label for="Longitude">Longitude:</label>
       <input class="form-control" asp-for="Longitude" />
     </div>
 
-    <div>
+    <div class="my-2">
       <label for="Date">Date:</label>
       <input class="form-control" asp-for="Date" type="date" />
     </div>
 
-    <div>
+    <div class="my-2">
       <label for="Description">Description:</label>
       <textarea class="form-control" asp-for="Description"></textarea>
-    </div>
-
-    <button type="submit" class="btn btn-primary">Submit</button>
+    </div>  
+    
+    <button type="submit" class="my-2 btn btn-primary">Submit</button>
   </form>
 </section>
