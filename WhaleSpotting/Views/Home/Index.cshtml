@@ -1,4 +1,5 @@
-﻿@{
+@model WhaleSpotting.ViewModels.HomeViewModel
+@{
 ViewData["Title"] = "Home Page";
 }
 
@@ -21,3 +22,19 @@ ViewData["Title"] = "Home Page";
         this website to help encourage and track whale spotting all across the world!
     </p>
 </main>
+
+@if (Model.LastWeekPhotos != null && Model.LastWeekPhotos.Count > 0)
+{
+    <ul>
+        @foreach (var photo in Model.LastWeekPhotos)
+        {
+            <li>
+                <img src="@photo.Image" alt='@(
+                    photo.Sighting != null
+                        ? $"Whale sighting on {photo.Sighting.Date}"
+                        : "Whale sighting"
+                )'>
+            </li>
+        }
+    </ul>
+}

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using WhaleSpotting.Data;
@@ -11,9 +12,10 @@ using WhaleSpotting.Data;
 namespace WhaleSpotting.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231108134509_SightingsApprovedStatus")]
+    partial class SightingsApprovedStatus
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -230,16 +232,7 @@ namespace WhaleSpotting.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Bio")
-                        .HasColumnType("text");
-
                     b.Property<string>("IdentityUserId")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("text");
-
-                    b.Property<string>("ProfileImageUrl")
                         .HasColumnType("text");
 
                     b.HasKey("Id");
@@ -318,9 +311,6 @@ namespace WhaleSpotting.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("PhotoUrl")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Slug")
                         .HasColumnType("text");
 
                     b.HasKey("Id");
@@ -410,7 +400,7 @@ namespace WhaleSpotting.Migrations
             modelBuilder.Entity("WhaleSpotting.Photo", b =>
                 {
                     b.HasOne("WhaleSpotting.Sighting", "Sighting")
-                        .WithMany("Photos")
+                        .WithMany()
                         .HasForeignKey("SightingId");
 
                     b.Navigation("Sighting");
@@ -428,11 +418,6 @@ namespace WhaleSpotting.Migrations
             modelBuilder.Entity("WhaleSpotting.Models.WsUser", b =>
                 {
                     b.Navigation("Sightings");
-                });
-
-            modelBuilder.Entity("WhaleSpotting.Sighting", b =>
-                {
-                    b.Navigation("Photos");
                 });
 #pragma warning restore 612, 618
         }

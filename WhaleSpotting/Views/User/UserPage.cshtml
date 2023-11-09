@@ -1,8 +1,28 @@
 @model WsUser
 
 @{
-    ViewData["Title"] = "Privacy Policy";
+    ViewData["Title"] = "My User Page";
 }
 <h1>@ViewData["Title"]</h1>
 
-<p>Use this page to detail your site's privacy policy.</p>
+<p>My Sightings.</p>
+
+<div>
+    
+        <ul>
+            
+                @foreach (var sighting in @Model.Sightings)
+                {
+                    <li class="card" style="width: 18rem">
+                        <div class="card-body">
+                            <h4 class="card-title">@sighting.Date</h4>
+                            <p class="card-text"> Latitute: @sighting.Latitude Longitude: @sighting.Longitude</p>
+                            <p class="card-text"> Description of Sighting:</p>
+                            <p class="card-text"> @sighting.Description</p>
+                        </div>
+                    </li>
+                }
+            </div>
+        </ul>
+    
+</div>

@@ -1,0 +1,33 @@
+@model WhaleSpotting.Sighting
+@{
+  ViewData["Title"] = "Add a sighting";
+}
+
+<div class="text-center">
+  <h1>Add a Sighting</h1>
+</div>
+
+<section>
+  <form method="post" asp-controller="Sighting" asp-action="NewSighting">
+    <div class="my-2">
+      <label for="Latitude">Latitude:</label>
+      <input class="form-control" asp-for="Latitude" />
+    </div>
+
+    <div class="my-2">
+      <label for="Longitude">Longitude:</label>
+      <input class="form-control" asp-for="Longitude" />
+    </div>
+
+    <div class="my-2">
+      <label for="Date">Date:</label>
+      <input class="form-control" asp-for="Date" type="date" />
+    </div>
+
+    <div class="my-2">
+      <label for="Description">Description:</label>
+      <textarea class="form-control" asp-for="Description"></textarea>
+    </div>
+    <button type="submit" class="my-2 btn btn-primary">Submit</button>
+  </form>
+</section>
