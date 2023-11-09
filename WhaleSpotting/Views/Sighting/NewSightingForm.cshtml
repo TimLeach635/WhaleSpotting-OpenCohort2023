@@ -1,7 +1,11 @@
 @model WhaleSpotting.Sighting
 @{
-    ViewData["Title"] = "Add a sighting";
+  ViewData["Title"] = "Add a sighting";
 }
+
+<div class="text-center">
+  <h1>Add a Sighting</h1>
+</div>
 
 <section>
   <form method="post" asp-controller="Sighting" asp-action="NewSighting">
@@ -27,5 +31,4 @@
 
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
-
 </section>
