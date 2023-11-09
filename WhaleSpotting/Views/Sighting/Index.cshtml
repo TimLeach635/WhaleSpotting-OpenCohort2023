@@ -1,0 +1,43 @@
+@model List<Sighting> 
+
+<!-- Add Bootstrap and jQuery CDNs to your HTML for the carousel to work -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<div class="text-center">
+    <h1>Sightings</h1>
+</div>
+
+@for (int i=0; i< Model.Count; i++)
+{
+    <ul style="list-style: none; padding: 0;">
+        <div class="my-3 container card rounded-3" style="width: 18rem; float:left; margin:10px;">
+
+            <div id="carousel@(i)" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+
+                    @for (int j = 0; j < Model[i].Photos!.Count; j++)
+                    {
+                        <div class="carousel-item @(j == 0 ? "active" : "")">
+                            <img  class="card-img-top" width="318" height="318" src="@Model[i].Photos![j].Image" alt="Image @(j + 1)">
+                        </div>
+                    }        
+                    <a class="carousel-control-prev" href="#carousel@(i)" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only"></span>
+                    </a>
+                    <a class="carousel-control-next" href="#carousel@(i)" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only"></span>
+                    </a>
+                </div>        
+                <div class="card-body">
+                    <p class="card-text">Latitude: @Model[i].Latitude</p>
+                    <p class="card-text">Longitude: @Model[i].Longitude</p>
+                    <p class="card-text">Date: @Model[i].Date</p>
+                    <p class="card-text">Description: @Model[i].Description</p>
+                </div>
+            </div>
+        </div>
+    </ul>
+}

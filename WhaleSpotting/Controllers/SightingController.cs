@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Dynamic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WhaleSpotting.Data;
@@ -6,6 +7,7 @@ using WhaleSpotting.Models;
 
 namespace WhaleSpotting.Controllers;
 
+[Route("sighting")]
 public class SightingController : Controller
 {
     private readonly ILogger<SightingController> _logger;
@@ -20,9 +22,13 @@ public class SightingController : Controller
 
     public IActionResult Index()
     {
-        var sightings = _context.Sightings!
-            .ToList();
+        // dynamic mymodel = new ExpandoObject();
+        // mymodel.sightings = _context.Sightings!.ToList();
+        // mymodel.photos = _context.Photos!.ToList();
 
+        var sightings = _context.Sightings!
+            .Include(s => s.Photos)
+            .ToList();
         return View(sightings);
     }
 
