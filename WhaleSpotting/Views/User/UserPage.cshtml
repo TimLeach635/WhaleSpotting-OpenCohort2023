@@ -1,11 +1,24 @@
 @model WsUser
 
 @{
-    ViewData["Title"] = "My User Page";
+    ViewData["Title"] = @Model.Name;
 }
-<h1>@ViewData["Title"]</h1>
 
-<p>My Sightings.</p>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4 text-center">
+            <img src="@Model.ProfileImageUrl" alt="Profile image for @Model.Name" class="img-fluid">
+            <h1>@ViewData["Title"]</h1>
+        </div>
+        <div class="col-md-8 extra-margin">
+           <p> @Model.Bio</p> 
+        </div>
+    </div>
+        
+        
+</div>
+
+<h2>My Sightings.</h2>
 
 <div>
     
