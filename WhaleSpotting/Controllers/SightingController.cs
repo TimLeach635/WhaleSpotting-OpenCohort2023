@@ -28,7 +28,7 @@ public class SightingController : Controller
     }
 
     public IActionResult SightingLocation()
-    {   
+    {
         var sightings = _context.Sightings!
             .ToList();
 
@@ -42,4 +42,11 @@ public class SightingController : Controller
 
         return Ok();
     }
+    [HttpGet("new")]
+    public IActionResult NewSightingForm()
+    {
+        return View();
+    }
+
 }
+
