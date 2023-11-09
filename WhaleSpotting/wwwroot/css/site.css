@@ -16,3 +16,26 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.btn {
+  height: 200px;
+  line-height: 200px;
+  width: 330px;
+  border-radius: 6px;
+  margin-top: 40px;
+  padding: 0;
+  text-align: center;
+}
+
+.btn1 {
+  margin-right: 250px;
+}
+
+.btn1 {
+  margin-right: 250px;
+}
+
+.card-img-top {
+  height: 30vh;
+  
+  }
