@@ -1,6 +1,5 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using SQLitePCL;
 using WhaleSpotting.Models;
 using WhaleSpotting.Data;
 
