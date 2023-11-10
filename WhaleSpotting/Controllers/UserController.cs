@@ -17,13 +17,22 @@ public class UserController : Controller
         _context = context;
     }
 
-    [HttpGet("{id}")]
+    [HttpGet("{id}/My Sightings")]
     public IActionResult UserPage([FromRoute] int id)
     {
         var user = _context.WsUsers!
             .Include(u => u.Sightings)
             .Single(u => u.Id == id);
 
+    
+           return View(user); 
+        
+    }
+
+    [HttpGet("{id}")]
+    public IActionResult EditUser(int id)
+    {
+        var user = _context.WsUsers!.Find(id);
         return View(user);
     }
 
