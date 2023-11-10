@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using WhaleSpotting.Data;
 using WhaleSpotting.Models;
 
@@ -16,11 +16,11 @@ public class SpeciesController : Controller
         _context = context;
     }
 
-    [HttpGet("{id}")]
-    public IActionResult UniqueSpecies([FromRoute] int id)
+    [HttpGet("{slug}")]
+    public IActionResult UniqueSpecies([FromRoute] string slug)
     {
         var species = _context.Species;
-        var uniqueSpecies= species!.Single(s => s.Id == id);
+        var uniqueSpecies= species!.Single(s => s.Slug == slug);
 
         return View(uniqueSpecies);
     }
