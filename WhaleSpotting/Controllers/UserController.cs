@@ -17,7 +17,7 @@ public class UserController : Controller
         _context = context;
     }
 
-    [HttpGet("{id}/My Sightings")]
+    [HttpGet("{id}")]
     public IActionResult UserPage([FromRoute] int id)
     {
         var user = _context.WsUsers!
@@ -29,7 +29,7 @@ public class UserController : Controller
         
     }
 
-    [HttpGet("{id}")]
+    [HttpGet("{id}/edit")]
     public IActionResult EditUser(int id)
     {
         var user = _context.WsUsers!.Find(id);
