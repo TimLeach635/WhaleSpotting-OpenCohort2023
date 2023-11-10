@@ -16,12 +16,16 @@
             <div id="carousel_@(sighting.Id)" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
 
-                    @foreach (var photo in sighting.Photos!)
+                    @if (sighting.Photos != null)
                     {
-                        <div class="carousel-item @(photo == sighting.Photos.First() ? "active" : "")">
-                            <img  class="card-img-top" width="318" height="318" src="@photo.Image" alt="A picture of a whale sighting">
-                        </div>
-                    }        
+                        foreach (var photo in sighting.Photos)
+                        {
+                            <div class="carousel-item @(photo == sighting.Photos.First() ? "active" : "")">
+                                <img  class="card-img-top" width="318" height="318" src="@photo.Image" alt="A picture of a whale sighting">
+                            </div>
+                        }      
+                    }    
+
                     <a class="carousel-control-prev" href="#carousel_@(sighting.Id)" role="button" data-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="sr-only"></span>
