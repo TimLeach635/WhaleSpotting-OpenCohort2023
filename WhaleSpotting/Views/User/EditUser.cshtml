@@ -1,0 +1,28 @@
+@model WhaleSpotting.Models.WsUser
+@{
+    ViewData["Title"] = "Edit your profile";
+}
+<h1>@ViewData["Title"]</h1>
+
+
+<section>
+  <form method="post" asp-controller="User" asp-action="EditUser" asp-route-id="@Model.Id">
+    <div>
+      <label for="Name">Name:</label>
+      <input class="form-control" asp-for="Name" />
+    </div>
+
+    <div>
+      <label for="Profile Image">Profile Image:</label>
+      <input class="form-control" asp-for="ProfileImageUrl" />
+    </div>
+
+    <div>
+      <label for="Bio">Bio:</label>
+      <textarea class="form-control" asp-for="Bio"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save your profile</button>
+  </form>
+
+</section>
