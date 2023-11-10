@@ -8,7 +8,7 @@
     <div class="row">
         <div class="col-md-4 text-center">
             <img src="@Model.ProfileImageUrl" alt="Profile image for @Model.Name" class="img-fluid">
-            <h2>@ViewData["Title"]</h2>
+            <h2>@Model.Name</h2>
         </div>
         <div class="col-md-8 margin-top 20px">
            <p> @Model.Bio</p> 
@@ -19,7 +19,7 @@
 <div class="container" style="margin-top: 80px">
     <div class="row justify-content-md-center">
         <div class="col col-lg-2"></div>
-            <div class="col-md-auto">
+            <div class="col-md-auto text-center">
                 <h1>My Sightings</h1>
                     <ul>
                         <div>
