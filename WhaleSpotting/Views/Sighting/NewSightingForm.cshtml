@@ -1,28 +1,40 @@
-@model WhaleSpotting.Sighting
+@model WhaleSpotting.ViewModels.NewSightingFormViewModel
+
+
 @{
     ViewData["Title"] = "Add a sighting";
 }
 
 <section>
   <form method="post" asp-controller="Sighting" asp-action="NewSighting">
+    <div class="col-md-4">
+      <label for="Whale">Whale:</label>
+      <select id="inputWhale" class="form-select" asp-for="SpeciesId">
+        <option selected>Choose...</option>
+        @foreach (var species in Model!.ListOfSpecies!)
+        {
+          <option value="@species.Id">@species.Name</option>
+        }
+      </select>
+    </div>
     <div>
       <label for="Latitude">Latitude:</label>
-      <input class="form-control" asp-for="Latitude" />
+      <input class="form-control" asp-for="Sighting!.Latitude" />
     </div>
 
     <div>
       <label for="Longitude">Longitude:</label>
-      <input class="form-control" asp-for="Longitude" />
+      <input class="form-control" asp-for="Sighting!.Longitude" />
     </div>
 
     <div>
       <label for="Date">Date:</label>
-      <input class="form-control" asp-for="Date" type="date" />
+      <input class="form-control" asp-for="Sighting!.Date" type="date" />
     </div>
 
     <div>
       <label for="Description">Description:</label>
-      <textarea class="form-control" asp-for="Description"></textarea>
+      <textarea class="form-control" asp-for="Sighting!.Description"></textarea>
     </div>
 
     <button type="submit" class="btn btn-primary">Submit</button>
