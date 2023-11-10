@@ -30,6 +30,7 @@ public class SightingController : Controller
         return View(approvedSightings);
     }
 
+     [HttpGet("location")]
     public IActionResult SightingLocation()
     {
         var sightings = _context.Sightings!
@@ -45,7 +46,7 @@ public class SightingController : Controller
 
         return Ok();
     }
-    [HttpGet]
+    [HttpGet("new")]
     public IActionResult NewSightingForm()
     {
         return View();
