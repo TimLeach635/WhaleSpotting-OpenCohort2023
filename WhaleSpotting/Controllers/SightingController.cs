@@ -31,7 +31,7 @@ public class SightingController : Controller
         return View(approvedSightings);
     }
 
-     [HttpGet("location")]
+    [HttpGet("location")]
     public IActionResult SightingLocation()
     {
         var sightings = _context.Sightings!
@@ -39,14 +39,33 @@ public class SightingController : Controller
             .ToList();
         return View(sightings);
     }
-    [HttpPost("")]
+
+    // [HttpPost("")]
+    // public IActionResult NewSighting([FromForm] Sighting newSighting)
+    // {
+    //     _context.Sightings?.Add(newSighting);
+    //     _context.SaveChanges();
+
+    //     return Ok();
+    // }
+
+    [HttpPost]
     public IActionResult NewSighting([FromForm] Sighting newSighting)
     {
-        _context.Sightings?.Add(newSighting);
-        _context.SaveChanges();
 
-        return Ok();
+        if (ModelState.IsValid)
+        {
+            _context.Sightings?.Add(newSighting);
+            _context.SaveChanges();
+
+
+            return RedirectToAction("NewSightingCompletion", new { id = newSighting.Id });
+        }
+
+
+        return View("NewSightingForm", newSighting);
     }
+
     [HttpGet("new")]
     public IActionResult NewSightingForm()
     {
