@@ -1,0 +1,106 @@
+﻿@model List<Website>;
+@{
+    ViewData["Title"] = "Get Involved";
+}
+  <style>
+      body {
+        background-image: url(https://wallup.net/wp-content/uploads/2018/10/08/918802-whale-whales-fish-underwater-ocean-sea-sealife.jpg); /* The image used for background*/
+        background-repeat: no-repeat; 
+        background-position: center; 
+        background-size: cover; 
+        font-family: "Syne", sans-serif;
+      }
+
+      .container {
+        width: 100%;
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+      }
+
+      .image-container {
+        text-align: center;
+        width: 100%;
+      }
+
+      .links-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .link {
+        min-width: 50% !important;
+      }
+
+      @@media (min-width: 1200px) {
+        .container {
+          max-width: 1140px;
+        }
+      }
+      @@media (min-width: 992px) {
+        .container {
+          max-width: 960px;
+        }
+      }
+      @@media (min-width: 768px) {
+        .container {
+          max-width: 720px;
+        }
+
+        .link {
+          width: 100%;
+        }
+      }
+      @@media (min-width: 576px) {
+        .container {
+          max-width: 540px;
+        }
+      }
+
+      .w3-yellow,
+      .w3-hover-purple:hover,
+      .w3-text-black {
+        color: rgba(255, 255, 255, 1) !important;
+        background-color: rgba(0, 178, 255, 0.37) !important;
+      }
+    </style>
+    
+    <div class="container">
+      
+      <div class="image-container">
+        <img
+          src="https://th.bing.com/th/id/R.a4b25760a89a9f2180c7b5d416c52022?rik=qMrrZcE8cQIJBA&riu=http%3a%2f%2f2.bp.blogspot.com%2f-fWDwMb_KldI%2fUiTcDNmpTMI%2fAAAAAAAAAkE%2fuDYyuuR1VT4%2fs320%2fgetinvolved.jpg&ehk=wtgisO46EEzMGIDJlDYrosFB8sSy71A9geBgNUfVfkE%3d&risl=&pid=ImgRaw&r=0"
+          class="w3-margin"
+          alt="Person"
+          max-width="100%"
+          height="150px"
+          style="border-radius: 50%"
+        />
+
+        <div class="links-container">
+          <a href="https://wwfwhales.org" class="w3-button w3-hover-pink w3-large w3-round-xlarge w3-yellow link" target="_blank">WWF Whales</a>
+          <a href="https://orca.org.uk" class="w3-button w3-hover-pink w3-large w3-round-xlarge w3-yellow link" target="_blank">ORCA UK</a>
+          <a href="https://uk.whales.org" class="w3-button w3-hover-pink w3-large w3-round-xlarge w3-yellow link" target="_blank">UK Whales</a>
+          
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="w3-content w3-padding-32 w3-center" style="padding-right: 10px; padding-left: 10px; max-width: 800px">
+      <h3 class="w3-text-white">Hello and welcome to our Whale conservation section.</h3>
+      <h5 class="w3-text-white">Did you know there are 28 different species of whales and dolphins that have been sighted around the UK coastline. Some of these species have only been recorded a few times while others are seen more regularly.
+</h5>
+      <p class="w3-text-white">
+        If you are interested to know more and support the cause, please check out the affiliated links listed.
+      </p>
+      <div class="w3-row">
+        <div class="w3-col m8 s12">
+        
+        </div>
+      </div>
+    </div>
