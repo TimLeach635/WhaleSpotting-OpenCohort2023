@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using WhaleSpotting.Data;
@@ -11,9 +12,10 @@ using WhaleSpotting.Data;
 namespace WhaleSpotting.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231108134509_SightingsApprovedStatus")]
+    partial class SightingsApprovedStatus
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -230,16 +232,7 @@ namespace WhaleSpotting.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Bio")
-                        .HasColumnType("text");
-
                     b.Property<string>("IdentityUserId")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("text");
-
-                    b.Property<string>("ProfileImageUrl")
                         .HasColumnType("text");
 
                     b.HasKey("Id");
@@ -293,15 +286,10 @@ namespace WhaleSpotting.Migrations
                     b.Property<float>("Longitude")
                         .HasColumnType("real");
 
-                    b.Property<int?>("SpeciesId")
-                        .HasColumnType("integer");
-
                     b.Property<int?>("UserId")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("SpeciesId");
 
                     b.HasIndex("UserId");
 
@@ -323,9 +311,6 @@ namespace WhaleSpotting.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("PhotoUrl")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Slug")
                         .HasColumnType("text");
 
                     b.HasKey("Id");
@@ -423,15 +408,9 @@ namespace WhaleSpotting.Migrations
 
             modelBuilder.Entity("WhaleSpotting.Sighting", b =>
                 {
-                    b.HasOne("WhaleSpotting.Species", "Species")
-                        .WithMany()
-                        .HasForeignKey("SpeciesId");
-
                     b.HasOne("WhaleSpotting.Models.WsUser", "User")
                         .WithMany("Sightings")
                         .HasForeignKey("UserId");
-
-                    b.Navigation("Species");
 
                     b.Navigation("User");
                 });
