@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Dynamic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WhaleSpotting.Data;
@@ -7,6 +8,7 @@ using WhaleSpotting.ViewModels;
 
 namespace WhaleSpotting.Controllers;
 
+[Route("sighting")]
 public class SightingController : Controller
 {
     private readonly ILogger<SightingController> _logger;
@@ -24,18 +26,12 @@ public class SightingController : Controller
         var approvedSightings = _context.Sightings!
             .Where(sighting => sighting.Approved)
             .Include(s => s.User)
+            .Include(p => p.Photos)
             .ToList();
 
         return View(approvedSightings);
     }
-
-    public IActionResult SightingLocation()
-    {
-        var sightings = _context.Sightings!
-            .ToList();
-
-        return View(sightings);
-    }
+    
     [HttpPost("")]
     public IActionResult NewSighting([FromForm] NewSightingFormViewModel newSightingViewModel)
     {
@@ -48,7 +44,8 @@ public class SightingController : Controller
 
         return Ok();
     }
-    [HttpGet]
+    
+    [HttpGet("new")]
     public IActionResult NewSightingForm()
     {
         var species = _context.Species!.ToList();
@@ -62,4 +59,3 @@ public class SightingController : Controller
     }
 
 }
-
