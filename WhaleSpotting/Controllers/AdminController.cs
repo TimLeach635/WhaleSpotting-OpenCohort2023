@@ -25,23 +25,23 @@ public class AdminController : Controller
 
         return View(unapprovedSightings);
     }
-     [HttpPost]
-        public IActionResult ApproveSightings(List<int> selectedSightingIds)
+    [HttpPost]
+    public IActionResult ApproveSightings(List<int> selectedSightingIds)
+    {
+        if (selectedSightingIds != null && selectedSightingIds.Any())
         {
-            if (selectedSightingIds != null && selectedSightingIds.Any())
+            var selectedSightings = _context.Sightings!
+                .Where(s => selectedSightingIds.Contains(s.Id))
+                .ToList();
+
+            foreach (var sighting in selectedSightings)
             {
-                var selectedSightings = _context.Sightings!
-                    .Where(s => selectedSightingIds.Contains(s.Id))
-                    .ToList();
-
-                foreach (var sighting in selectedSightings)
-                {
-                    sighting.Approved = true;
-                }
-
-                _context.SaveChanges();
+                sighting.Approved = true;
             }
 
-            return RedirectToAction("Index");
+            _context.SaveChanges();
         }
+
+        return RedirectToAction("Index");
+    }
 }

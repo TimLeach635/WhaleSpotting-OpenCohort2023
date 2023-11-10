@@ -8,10 +8,8 @@
     <h1>Admin - Sightings Approval</h1>
     <form method="post" asp-controller="Admin" asp-action="ApproveSightings">
     <ul style="padding-left: 0;">
-        @for (var i = 0; i < Model.Count; i++)
+        @foreach (var sighting in Model)
         {
-            var sighting = Model[i];
-
             <li class="my-3 container card rounded-3" style="width: 18rem;">
                 <img class="card-img-top" src="..." alt="Card image">
                 <div class="card-body">
