@@ -25,14 +25,7 @@ public class SightingController : Controller
 
         return View(sightings);
     }
-
-    public IActionResult SightingLocation()
-    {   
-        var sightings = _context.Sightings!
-            .ToList();
-
-        return View(sightings);
-    }
+    
     [HttpPost("")]
     public IActionResult NewSighting([FromForm] Sighting newSighting)
     {
@@ -40,5 +33,12 @@ public class SightingController : Controller
         _context.SaveChanges();
 
         return Ok();
+    }
+    public IActionResult List()
+    {
+        var sightings = _context.Sightings!
+            .ToList();
+
+        return View(sightings);
     }
 }

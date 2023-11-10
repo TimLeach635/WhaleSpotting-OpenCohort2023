@@ -1,22 +1,47 @@
-﻿@model List<Sighting>;
+@model List<WhaleSpotting.Sighting>
+
 @{
     ViewData["Title"] = "Sightings";
 }
 
 <div class="text-center">
     <h1>Sightings</h1>
-    <ul> 
+    
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="map-tab" data-bs-toggle="tab" href="#mapContent" role="tab" aria-controls="map" aria-selected="true">Map</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link " id="list-tab" data-bs-toggle="tab" href="#listContent" role="tab" aria-controls="list" aria-selected="true">List</a>
+        </li>
+        
+    </ul>
+
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="mapContent" role="tabpanel" aria-labelledby="map-tab">
+            @Html.Partial("_MyMapPartial", Model)
+        </div>
+        <div class="tab-pane fade active" id="listContent" role="tabpanel" aria-labelledby="list-tab">
+            @Html.Partial("_MyListPartial", Model)
+        </div>
+        
+    </div>
+</div>
+@section Scripts {
+    <script> 
+        var map = L.map('map').setView([51.505, -0.09], 13);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
         @foreach (var sighting in Model)
         {
-            <li class="my-3 container card rounded-3" style="width: 18rem;">
-                <img class="card-img-top" src="..." alt="Card image">
-                <div class="card-body">
-                    <p class="card-text">Latitude: @sighting.Latitude</p>
-                    <p class="card-text">Longitude: @sighting.Longitude</p>
-                    <p class="card-text">Date: @sighting.Date</p>
-                    <p class="card-text">Description: @sighting.Description</p>
-                </div>
-            </li>
+            <text>
+                L.marker([@sighting.Latitude, @sighting.Longitude]).addTo(map)
+                    .bindPopup("@sighting.Description");
+            </text>
         }
-    </ul>
-</div>
+    </script>
+}
+w
