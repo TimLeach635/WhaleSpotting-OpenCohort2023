@@ -24,6 +24,15 @@ public class UserController : Controller
             .Include(u => u.Sightings)
             .Single(u => u.Id == id);
 
+    
+           return View(user); 
+        
+    }
+
+    [HttpGet("{id}/edit")]
+    public IActionResult EditUser(int id)
+    {
+        var user = _context.WsUsers!.Find(id);
         return View(user);
     }
 
