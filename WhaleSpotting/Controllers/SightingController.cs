@@ -51,8 +51,8 @@ public class SightingController : Controller
 
             _context.Sightings?.Add(newSightingViewModel.Sighting!);
             _context.SaveChanges();
-
-            TempData["ConfirmationMessage"] = "Sighting added successfully!";
+            
+            return RedirectToAction("SightingSubmitted");
     }
     catch (Exception ex)
     {
@@ -86,6 +86,12 @@ public class SightingController : Controller
             Sighting = sighting,
         };
         return View(viewModel);
+    }
+
+    [HttpGet("submitted")]
+    public IActionResult SightingSubmitted()
+    {
+        return View();
     }
 
 }
