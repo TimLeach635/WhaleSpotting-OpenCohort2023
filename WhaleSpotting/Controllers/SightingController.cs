@@ -37,8 +37,10 @@ public class SightingController : Controller
     {
         var speciesId = newSightingViewModel.SpeciesId;
         Species species = _context.Species!
-            .Where(speciesCheck => speciesCheck.Id == speciesId).First();
+            .Where(speciesCheck => speciesCheck.Id == speciesId)
+            .First();
         newSightingViewModel.Sighting!.Species = species;
+        
         _context.Sightings?.Add(newSightingViewModel.Sighting!);
         _context.SaveChanges();
 
