@@ -50,6 +50,6 @@ body {
   max-width: 440px;
 }
 
-.pb-3 {
-  padding-bottom: 6rem!important;
+main {
+  padding-bottom: 6rem;
 }
