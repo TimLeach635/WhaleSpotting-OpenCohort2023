@@ -25,6 +25,11 @@ body {
   margin-top: 40px;
   padding: 0;
   text-align: center;
+  transition: 0.3s;
+}
+
+.home-page-action-button:hover {
+  opacity: 0.7;
 }
 
 .btn1 {
@@ -38,4 +43,13 @@ body {
 .card-img-top {
   height: 30vh;
   
-  }
+}
+
+.species-list {
+  flex: 1 0 361px;
+  max-width: 440px;
+}
+
+main {
+  padding-bottom: 6rem;
+}

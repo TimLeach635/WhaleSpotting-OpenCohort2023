@@ -9,16 +9,23 @@
     <div class="row row-cols-1 row-cols-md-3 g-4">
     @foreach (var species in Model)
     {
-        <div class="col">
-            <div class="card h-100">
-                <img src="@species.PhotoUrl" class="card-img-top" alt="@species.Name photo">
-                <div class="card-body">
-                    <a asp-controller="Species" asp-action="UniqueSpecies" asp-route-slug="@species.Slug">
-                    <h5 class="card-title">@species.Name</h5>
-                    </a>
+        @if (@species.Name == "Unknown")
+        {
+            continue;
+        }
+        else
+        {
+            <div class="col species-list">
+                <div class="card h-100">
+                    <img src="@species.PhotoUrl" class="card-img-top" alt="@species.Name photo">
+                    <div class="card-body">
+                        <a asp-controller="Species" asp-action="UniqueSpecies" asp-route-slug="@species.Slug">
+                        <h5 class="card-title">@species.Name</h5>
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
+        }
     }
     </div>
 </div>
