@@ -20,6 +20,11 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
+        if (TempData.TryGetValue("ConfirmationMessage", out var confirmationMessage))
+        {
+            ViewData["ConfirmationMessage"] = confirmationMessage;
+        }
+        
         var lastweek = DateOnly.FromDateTime(DateTime.UtcNow.AddDays(-7));
 
         var lastWeekPhotos = _context.Photos!
