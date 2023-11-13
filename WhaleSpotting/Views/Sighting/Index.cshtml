@@ -4,9 +4,16 @@
     ViewData["Title"] = "Sightings";
 }
 
-<div class="text-center">
-    <h1>Sightings</h1>
-    
+<div style="display: flex; text-align: center;">
+    <h1 style="margin-right: 900px;">Sightings</h1>
+
+    <div style="align: right;">
+        <button style="background-color: #16a1cf; border-radius: 8px;">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Sighting" asp-action="NewSightingForm">Add New Sighting</a>
+        </button>
+    </div>
+</div>
+
     <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item">
             <a class="nav-link active" id="map-tab" data-bs-toggle="tab" href="#mapContent" role="tab" aria-controls="map" aria-selected="true">Map</a>
@@ -14,7 +21,6 @@
         <li class="nav-item">
             <a class="nav-link " id="list-tab" data-bs-toggle="tab" href="#listContent" role="tab" aria-controls="list" aria-selected="true">List</a>
         </li>
-        
     </ul>
 
     <div class="tab-content" id="myTabContent">
@@ -26,7 +32,7 @@
         </div>
         
     </div>
-</div>
+
 @section Scripts {
     <script> 
         var map = L.map('map').setView([51.505, -0.09], 13);
