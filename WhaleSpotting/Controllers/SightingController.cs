@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Dynamic;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WhaleSpotting.Data;
@@ -9,6 +10,7 @@ using WhaleSpotting.ViewModels;
 namespace WhaleSpotting.Controllers;
 
 [Route("sighting")]
+[Authorize]
 public class SightingController : Controller
 {
     private readonly ILogger<SightingController> _logger;
@@ -21,6 +23,7 @@ public class SightingController : Controller
         _context = context;
     }
 
+    [AllowAnonymous]
     public IActionResult Index()
     {
         var approvedSightings = _context.Sightings!
