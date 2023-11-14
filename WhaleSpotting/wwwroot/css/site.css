@@ -17,39 +17,61 @@ body {
   margin-bottom: 60px;
 }
 
+.whale-links {
+  float: left;
+  width: 50%;
+  padding: 30px;
+}
+
 .home-page-action-button {
-  height: 200px;
-  line-height: 200px;
-  width: 330px;
+  width: 20vw;
+  height: 15vh;
   border-radius: 6px;
-  margin-top: 40px;
-  padding: 0;
-  text-align: center;
   transition: 0.3s;
+  margin: auto;
+  text-decoration: none;
+  color: aliceblue;
+  font-size: 1.1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 .home-page-action-button:hover {
   opacity: 0.7;
 }
 
-.btn1 {
-  margin-right: 250px;
-}
-
-.btn1 {
-  margin-right: 250px;
-}
-
 .card-img-top {
   height: 30vh;
-  
 }
 
 .species-list {
   flex: 1 0 361px;
-  max-width: 440px;
 }
 
 main {
   padding-bottom: 6rem;
+}
+
+.species-photo {
+  width: 75%;
+  height: auto;
+  border-radius: 6px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40px;
+  margin-bottom: 30px;
+}
+
+.species-title {
+  text-align: center;
+  font-weight: bold;
+  font-size: 5vw;
+  padding-bottom: 30px;
+}
+
+.species-text {
+  font-size: larger;
 }
