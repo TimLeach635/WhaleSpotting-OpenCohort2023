@@ -1,9 +1,13 @@
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using WhaleSpotting.Models;
 
 namespace WhaleSpotting;
 
 public class Sighting
 {
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
     public WsUser? User { get; set; }
     public Species? Species { get; set; }

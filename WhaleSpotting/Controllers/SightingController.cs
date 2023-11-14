@@ -39,18 +39,43 @@ public class SightingController : Controller
     [HttpPost("")]
     public IActionResult NewSighting([FromForm] NewSightingFormViewModel newSightingViewModel)
     {
-        var speciesId = newSightingViewModel.SpeciesId;
-        Species species = _context.Species!
-            .Where(speciesCheck => speciesCheck.Id == speciesId)
-            .First();
-        newSightingViewModel.Sighting!.Species = species;
-        
-        _context.Sightings?.Add(newSightingViewModel.Sighting!);
-        _context.SaveChanges();
+        try
+        {
+            var speciesId = newSightingViewModel.SpeciesId;
+            Species selectedSpecies = _context.Species!
+                .Where(speciesCheck => speciesCheck.Id == speciesId)
+                .First();
+            newSightingViewModel.Sighting!.Species = selectedSpecies;
 
-        return Ok();
+            var userId = newSightingViewModel.Sighting.User!.Id;
+            newSightingViewModel.Sighting!.User = new WsUser { Id = userId }; 
+
+            _context.Sightings?.Add(newSightingViewModel.Sighting!);
+            _context.SaveChanges();
+            
+            return RedirectToAction("SightingSubmitted");
     }
-    
+    catch (Exception ex)
+    {
+        _logger.LogError(ex, "An error occurred while adding the sighting.");
+
+        TempData["ErrorMessage"] = "An error occurred while adding the sighting.";
+    }
+
+    var species = _context.Species!.ToList();
+    var sighting = new Sighting();
+    var viewModel = new NewSightingFormViewModel
+    {
+        ListOfSpecies = species,
+        Sighting = sighting,
+    };
+
+    ViewData["ConfirmationMessage"] = TempData["ConfirmationMessage"];
+    ViewData["ErrorMessage"] = TempData["ErrorMessage"];
+
+    return View("NewSightingForm", viewModel);
+}
+
     [HttpGet("new")]
     public IActionResult NewSightingForm()
     {
