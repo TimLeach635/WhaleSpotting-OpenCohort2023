@@ -5,7 +5,7 @@ ViewData["Title"] = "Home Page";
 
 <div class="p-5 text-center bg-image rounded-3" style="
     background-image: url('https://static.independent.co.uk/s3fs-public/thumbnails/image/2020/08/03/11/istock-1183394497.jpg?quality=75&width=990&crop=3%3A2%2Csmart&auto=webp');
-    height: 400px;
+    height: 400px; background-size: cover;
   ">
   <div class="mask" style="background-color: rgba(0, 0, 0, 0.3);">
     <div class="d-flex justify-content-center align-items-center h-100">
@@ -16,22 +16,22 @@ ViewData["Title"] = "Home Page";
   </div>
 </div>
 <main>
+  <br>
     <p class="container-fluid bg-2 text-center">
         Recently we have finally seen an increase in whale numbers across the globe due to conservation efforts, 
         and we would love to keep the public and scientific community engaged with these efforts. We have created 
         this website to help encourage and track whale spotting all across the world!
     </p>
-  <section>
-    <div class="d-grid gap-4 d-md-flex justify-content-md-center">
-      <a asp-controller="Sighting" asp-action="NewSightingForm" class="btn home-page-action-button btn1 btn-primary btn-lg align-middle" style="
-        background-image: url('https://images.unsplash.com/photo-1568430462989-44163eb1752f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzODI5NXwwfDF8c2VhcmNofDN8fHdoYWxlc3xlbnwwfHx8fDE2OTk0NTMzNzh8MA&ixlib=rb-4.0.3&q=80&w=400');
-        background-position: center;" 
-        alt="Submit a sighting button"><span class="align-middle">Submit a Sighting</span></a>
-     
-      <a asp-controller="Species" asp-action="Index" class="btn home-page-action-button btn2 btn-primary btn-lg align-middle" style="
-        background-image: url('https://images.unsplash.com/photo-1544552866-49ce864ff896?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzODI5NXwwfDF8c2VhcmNofDE5fHx3aGFsZXN8ZW58MHx8fHwxNjk5NDUzMzc4fDA&ixlib=rb-4.0.3&q=80&w=400');
-        background-position: center;"
-        alt="Whale species button"><span class="d-inline-block align-middle">Whale Species</span></a>
+  <section class= "section-whale-links">
+    <div class="whale-links"> 
+      <a asp-controller="Sighting" asp-action="NewSightingForm" class="home-page-action-button" style="
+        background-image: url('https://images.unsplash.com/photo-1568430462989-44163eb1752f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzODI5NXwwfDF8c2VhcmNofDN8fHdoYWxlc3xlbnwwfHx8fDE2OTk0NTMzNzh8MA&ixlib=rb-4.0.3&q=80&w=400');" 
+        alt="Submit a sighting button"><span>Submit a Sighting</span></a>
+     </div>
+     <div class="whale-links">
+      <a asp-controller="Species" asp-action="Index" class="home-page-action-button" style="
+        background-image: url('https://images.unsplash.com/photo-1544552866-49ce864ff896?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzODI5NXwwfDF8c2VhcmNofDE5fHx3aGFsZXN8ZW58MHx8fHwxNjk5NDUzMzc4fDA&ixlib=rb-4.0.3&q=80&w=400');"
+        alt="Whale species button"><span class="align-middle">Whale Species</span></a>
     </div>
   </section>
 </main>
