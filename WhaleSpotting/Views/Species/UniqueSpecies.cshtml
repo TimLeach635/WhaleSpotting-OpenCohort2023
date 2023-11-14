@@ -3,10 +3,16 @@
     ViewData["Title"] = Model.Name;
 }
 
+<style>
+    .custom-bold {
+        font-weight: 700 !important; 
+    }
+</style>
+
 <div class="card mb-3">
-  <img src="@Model.PhotoUrl" class="card-img-top" alt="@Model.Name photo">
+  <img src="@Model.PhotoUrl" class="card-img-top img-fluid mx-auto" alt="@Model.Name photo" style="object-fit: contain; width: 800px; height: 500px;">
   <div class="card-body">
-    <h5 class="card-title">@Model.Name</h5>
+    <h5 class="card-title custom-bold">@Model.Name</h5>
     <p class="card-text">@Model.Description</p>
   </div>
 </div>
