@@ -36,6 +36,9 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
+  object-fit: cover;
+  background-position: center; 
+  background-size: cover;
 }
 
 .home-page-action-button:hover {
