@@ -57,7 +57,7 @@ main {
   padding-bottom: 6rem;
 }
 
-.species-photo {
+.uniqueSpecies-photo {
   width: 75%;
   height: auto;
   border-radius: 6px;
@@ -68,13 +68,13 @@ main {
   margin-bottom: 30px;
 }
 
-.species-title {
+.uniqueSpecies-title {
   text-align: center;
   font-weight: bold;
   font-size: 5vw;
   padding-bottom: 30px;
 }
 
-.species-text {
+.uniqueSpecies-text {
   font-size: larger;
 }
