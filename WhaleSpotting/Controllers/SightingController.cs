@@ -1,13 +1,16 @@
 ﻿using System.Diagnostics;
 using System.Dynamic;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WhaleSpotting.Data;
 using WhaleSpotting.Models;
+using WhaleSpotting.ViewModels;
 
 namespace WhaleSpotting.Controllers;
 
 [Route("sighting")]
+[Authorize]
 public class SightingController : Controller
 {
     private readonly ILogger<SightingController> _logger;
@@ -20,6 +23,7 @@ public class SightingController : Controller
         _context = context;
     }
 
+    [AllowAnonymous]
     public IActionResult Index()
     {
         var approvedSightings = _context.Sightings!
@@ -32,9 +36,15 @@ public class SightingController : Controller
     }
     
     [HttpPost("")]
-    public IActionResult NewSighting([FromForm] Sighting newSighting)
+    public IActionResult NewSighting([FromForm] NewSightingFormViewModel newSightingViewModel)
     {
-        _context.Sightings?.Add(newSighting);
+        var speciesId = newSightingViewModel.SpeciesId;
+        Species species = _context.Species!
+            .Where(speciesCheck => speciesCheck.Id == speciesId)
+            .First();
+        newSightingViewModel.Sighting!.Species = species;
+        
+        _context.Sightings?.Add(newSightingViewModel.Sighting!);
         _context.SaveChanges();
 
         return Ok();
@@ -43,7 +53,14 @@ public class SightingController : Controller
     [HttpGet("new")]
     public IActionResult NewSightingForm()
     {
-        return View();
+        var species = _context.Species!.ToList();
+        var sighting = new Sighting();
+        var viewModel = new NewSightingFormViewModel
+        {
+            ListOfSpecies = species,
+            Sighting = sighting,
+        };
+        return View(viewModel);
     }
 
 }

@@ -30,7 +30,7 @@ public class UserController : Controller
     }
 
     [HttpGet("{id}/edit")]
-    public IActionResult EditUser(int id)
+    public IActionResult EditUserForm(int id)
     {
         var user = _context.WsUsers!.Find(id);
         return View(user);
