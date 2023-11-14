@@ -1,73 +1,10 @@
 ﻿@model List<Website>;
 @{
     ViewData["Title"] = "Get Involved";
+    
 }
-  <style>
-      body {
-        background-image: url(https://wallup.net/wp-content/uploads/2018/10/08/918802-whale-whales-fish-underwater-ocean-sea-sealife.jpg); /* The image used for background*/
-        background-repeat: no-repeat; 
-        background-position: center; 
-        background-size: cover; 
-        font-family: "Syne", sans-serif;
-      }
 
-      .container {
-        width: 100%;
-        padding-right: 15px;
-        padding-left: 15px;
-        margin-right: auto;
-        margin-left: auto;
-      }
-
-      .image-container {
-        text-align: center;
-        width: 100%;
-      }
-
-      .links-container {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 20px;
-      }
-
-      .link {
-        min-width: 50% !important;
-      }
-
-      @@media (min-width: 1200px) {
-        .container {
-          max-width: 1140px;
-        }
-      }
-      @@media (min-width: 992px) {
-        .container {
-          max-width: 960px;
-        }
-      }
-      @@media (min-width: 768px) {
-        .container {
-          max-width: 720px;
-        }
-
-        .link {
-          width: 100%;
-        }
-      }
-      @@media (min-width: 576px) {
-        .container {
-          max-width: 540px;
-        }
-      }
-
-      .w3-yellow,
-      .w3-hover-purple:hover,
-      .w3-text-black {
-        color: rgba(255, 255, 255, 1) !important;
-        background-color: rgba(0, 178, 255, 0.37) !important;
-      }
-    </style>
+    <link rel="stylesheet" href="~/css/getinvolved.css" asp-append-version="true"/>
     
     <div class="container">
       
