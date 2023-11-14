@@ -16,11 +16,11 @@ public class SpeciesController : Controller
         _context = context;
     }
 
-    [HttpGet("{slug}")]
-    public IActionResult UniqueSpecies([FromRoute] string slug)
+    [HttpGet("{id}")]
+    public IActionResult UniqueSpecies([FromRoute] int id)
     {
         var species = _context.Species;
-        var uniqueSpecies= species!.Single(s => s.Slug == slug);
+        var uniqueSpecies= species!.Single(s => s.Id == id);
 
         return View(uniqueSpecies);
     }
