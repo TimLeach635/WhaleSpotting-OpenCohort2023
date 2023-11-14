@@ -30,6 +30,7 @@ public class SightingController : Controller
             .Where(sighting => sighting.Approved)
             .Include(s => s.User)
             .Include(p => p.Photos)
+            .Include(s => s.Species)
             .ToList();
 
         return View(approvedSightings);
@@ -87,11 +88,4 @@ public class SightingController : Controller
         };
         return View(viewModel);
     }
-
-    [HttpGet("submitted")]
-    public IActionResult SightingSubmitted()
-    {
-        return View();
-    }
-
 }
