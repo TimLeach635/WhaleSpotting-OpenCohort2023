@@ -6,7 +6,7 @@
 <div class="text-center">
     <h1>Species List</h1>
     <br>
-    <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="species-list row row-cols-1 row-cols-md-3 g-4">
     @foreach (var species in Model)
     {
         @if (@species.Name == "Unknown")
@@ -15,7 +15,7 @@
         }
         else
         {
-            <div class="col species-list">
+            <div class="col species-list-item">
                 <div class="card h-100">
                     <img src="@species.PhotoUrl" class="card-img-top" alt="@species.Name photo">
                     <div class="card-body">
