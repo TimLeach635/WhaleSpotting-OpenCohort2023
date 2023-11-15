@@ -14,14 +14,20 @@ public class SightingViewModel
     public string? Description { get; set; }
     public List<Photo>? Photos { get; set; }
 
-    public static implicit operator SightingViewModel(Sighting v)
+    public Sighting toSighting()     
     {
-        return new SightingViewModel
+        return new Sighting
         {
-            Date = new DateTime(v.Date.Year, v.Date.Month, v.Date.Day),
-            Description = v.Description,
-            Photos = v.Photos,
+            User = this.User,
+            Species = this.Species,
+            Latitude = this.Latitude,
+            Longitude = this.Longitude,
+            Date = DateOnly.FromDateTime(Date),
+            Description = this.Description,
+            Photos = this.Photos,
+            Approved = false
         };
         throw new NotImplementedException();
     }
+
 }

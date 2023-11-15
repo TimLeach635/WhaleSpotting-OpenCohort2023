@@ -87,7 +87,7 @@ public class SightingController : Controller
     public IActionResult NewSightingForm()
     {
         var species = _context.Species!.ToList();
-        var sighting = new Sighting();
+        var sighting = new SightingViewModel();
         var viewModel = new NewSightingFormViewModel
         {
             ListOfSpecies = species,
