@@ -2,6 +2,7 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using WhaleSpotting.Models;
 using WhaleSpotting.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace WhaleSpotting.Controllers;
 
@@ -21,6 +22,7 @@ public class AdminController : Controller
     {
         var unapprovedSightings = _context.Sightings!
             .Where(sighting => !sighting.Approved)
+            .Include(p => p.Photos)
             .ToList();
 
         return View(unapprovedSightings);
