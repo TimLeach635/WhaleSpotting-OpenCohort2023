@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@{
+    bool isLoggedIn = ViewData["WsUserId"] != null;
+    int loggedInWsUserId = isLoggedIn ? (int)ViewData["WsUserId"] : 0;
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
@@ -33,6 +38,12 @@
                     <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="" asp-controller="Sighting" asp-action="Index">Sightings</a>
                     </li>
+                    @if (isLoggedIn)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="UserPage" asp-route-id="@loggedInWsUserId">Profile</a>
+                        </li>
+                    }
                     <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="GetInvolved">Get involved</a>
                     </li>    

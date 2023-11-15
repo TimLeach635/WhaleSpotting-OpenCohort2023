@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Dynamic;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WhaleSpotting.Data;
@@ -15,17 +16,29 @@ public class SightingController : Controller
 {
     private readonly ILogger<SightingController> _logger;
     private readonly ApplicationDbContext _context;
+    private readonly UserManager<IdentityUser> _userManager;
 
-    public SightingController(ILogger<SightingController> logger,
-        ApplicationDbContext context)
-    {
+    public SightingController
+    (
+        ILogger<SightingController> logger,
+        ApplicationDbContext context,
+        UserManager<IdentityUser> userManager
+    ) {
         _logger = logger;
         _context = context;
+        _userManager = userManager;
     }
 
     [AllowAnonymous]
     public IActionResult Index()
     {
+        if (User.Identity!.IsAuthenticated)
+        {
+            var wsUser = _context.WsUsers!
+                .Single(u => u.IdentityUser!.Id == _userManager.GetUserId(User));
+            ViewData["WsUserId"] = wsUser.Id;
+        }
+
         var approvedSightings = _context.Sightings!
             .Where(sighting => sighting.Approved)
             .Include(s => s.User)
@@ -39,6 +52,13 @@ public class SightingController : Controller
     [HttpPost("")]
     public IActionResult NewSighting([FromForm] NewSightingFormViewModel newSightingViewModel)
     {
+        if (User.Identity!.IsAuthenticated)
+        {
+            var wsUser = _context.WsUsers!
+                .Single(u => u.IdentityUser!.Id == _userManager.GetUserId(User));
+            ViewData["WsUserId"] = wsUser.Id;
+        }
+        
         try
         {
             var speciesId = newSightingViewModel.SpeciesId;
@@ -79,6 +99,13 @@ public class SightingController : Controller
     [HttpGet("new")]
     public IActionResult NewSightingForm()
     {
+        if (User.Identity!.IsAuthenticated)
+        {
+            var wsUser = _context.WsUsers!
+                .Single(u => u.IdentityUser!.Id == _userManager.GetUserId(User));
+            ViewData["WsUserId"] = wsUser.Id;
+        }
+        
         var species = _context.Species!.ToList();
         var sighting = new Sighting();
         var viewModel = new NewSightingFormViewModel
