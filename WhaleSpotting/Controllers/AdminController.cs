@@ -3,9 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 using WhaleSpotting.Models;
 using WhaleSpotting.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WhaleSpotting.Controllers;
 
+[Authorize(Roles = "Admin")]
 public class AdminController : Controller
 {
     private readonly ILogger<AdminController> _logger;
