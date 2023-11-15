@@ -21,11 +21,12 @@ body {
   float: left;
   width: 50%;
   padding: 30px;
+  margin-bottom: 1rem;
 }
 
 .home-page-action-button {
-  width: 20vw;
-  height: 15vh;
+  width: 22vw;
+  height: 20vh;
   border-radius: 6px;
   transition: 0.3s;
   margin: auto;
@@ -50,7 +51,12 @@ body {
 }
 
 .species-list {
-  flex: 1 0 361px;
+  justify-content: center;
+  align-items: center;
+}
+
+.species-list-item {
+  flex: 0 0 361px;
 }
 
 main {
