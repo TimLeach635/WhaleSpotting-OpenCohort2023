@@ -9,7 +9,7 @@ public class Sighting
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
-    public WsUser? User { get; set; }
+    public WsUser User { get; set; }
     public Species? Species { get; set; }
     public float Latitude { get; set; }
     public float Longitude { get; set; }
