@@ -3,9 +3,12 @@ using Microsoft.AspNetCore.Mvc;
 using WhaleSpotting.Models;
 using WhaleSpotting.Data;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WhaleSpotting.Controllers;
 
+[Authorize(Roles = "Admin")]
 public class AdminController : Controller
 {
     private readonly ILogger<AdminController> _logger;
@@ -34,6 +37,7 @@ public class AdminController : Controller
 
         var unapprovedSightings = _context.Sightings!
             .Where(sighting => !sighting.Approved)
+            .Include(p => p.Photos)
             .ToList();
 
         return View(unapprovedSightings);
