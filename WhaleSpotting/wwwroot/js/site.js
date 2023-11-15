@@ -16,6 +16,11 @@ let currentIndex = 0;
     dots[index].classList.add('active');
   }
  
+  function firstSlide() {
+    currentIndex = 0;
+    showSlide(currentIndex);
+  }
+
   function nextSlide() {
     currentIndex = (currentIndex + 1) % slides.length;
     showSlide(currentIndex);
@@ -26,13 +31,8 @@ let currentIndex = 0;
     showSlide(currentIndex);
   }
  
+  firstSlide();
  
   setInterval(nextSlide, 5000);
  
  
-  dots.forEach((dot, index) => {
-    dot.addEventListener('click', () => {
-      currentIndex = index;
-      showSlide(currentIndex);
-    });
-  });

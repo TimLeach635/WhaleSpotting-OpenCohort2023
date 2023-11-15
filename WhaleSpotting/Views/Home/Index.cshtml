@@ -22,7 +22,7 @@ ViewData["Title"] = "Home Page";
         and we would love to keep the public and scientific community engaged with these efforts. We have created 
         this website to help encourage and track whale spotting all across the world!
     </p>
-  <section>
+  <section style="padding-bottom: 50px">
     <div class="d-grid gap-4 d-md-flex justify-content-md-center">
       <a asp-controller="Sighting" asp-action="NewSightingForm" class="btn home-page-action-button btn1 btn-primary btn-lg align-middle" style="
         background-image: url('https://images.unsplash.com/photo-1568430462989-44163eb1752f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzODI5NXwwfDF8c2VhcmNofDN8fHdoYWxlc3xlbnwwfHx8fDE2OTk0NTMzNzh8MA&ixlib=rb-4.0.3&q=80&w=400');
@@ -40,25 +40,12 @@ ViewData["Title"] = "Home Page";
 
     <h2 style="text-align:center">This Week's Sightings</h2> 
     
-    <div class="slide active">
-        <img src="https://i.pinimg.com/originals/2a/b9/d9/2ab9d9e399709e1309a05e5abc169ecc.jpg" style="width:100%">
-    </div>
-
-    <div class="slide">
-      <img src="https://pix.avax.news/avaxnews/d0/32/000132d0.jpeg" style="width:100%">
-    </div>
-
-    <div class="slide">
-      <img src="https://th.bing.com/th/id/OIP.zs5LzGxsrWBfJ_iEfx2FcAHaE7?pid=ImgDet&rs=1" style="width:100%">
-    </div>
-    
-    <div class="slide">
-    <img src="https://media.istockphoto.com/photos/pilot-whale-pod-picture-id616865302?k=6&m=616865302&s=612x612&w=0&h=JSy_ZdPdVLYg41RXNCj3b_PGYiImSoGT2HJISV74-fI=" alt="Image 4">
-    </div>
-
-    <div class="slide">
-    <img src="https://www.antarctica.gov.au/site/assets/files/45706/20110408_peterduley_seiwhale_feed_img7420_permit775-1875.1024x0.jpg" alt="Image 7">
-    </div>
+    @foreach (var photo in Model.LastWeekPhotos)
+    {
+      <div class="slide">
+          <img src="@photo.Image" style="width:100%">
+      </div>
+    }
     
     <div>
       <a class="prev" onclick="nextSlide()">&#10094;</a>
