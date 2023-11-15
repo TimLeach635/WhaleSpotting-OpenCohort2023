@@ -1,0 +1,19 @@
+﻿@model List<WsUser>;
+
+@{
+    ViewData["Title"] = "Assign Admin Role to User";
+}
+
+<div class="text-center">
+    <h1>Admin - Assign Admin Role to User</h1>
+    <form method="get">        
+        <label>Email:</label>
+        <input type="text" name="userInput" />
+        <input type="submit" value="Submit" />
+    </form>   
+</div>
+
+@{
+    string email = Context.Request.Query["userInput"];
+    Console.WriteLine(email);
+}

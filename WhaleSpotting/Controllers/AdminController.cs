@@ -46,4 +46,13 @@ public class AdminController : Controller
 
         return RedirectToAction("Index");
     }
+
+     public IActionResult AssignAdmin()
+    {
+        var users = _context.WsUsers!
+        .Include(i => i.IdentityUser)
+        .ToList();
+
+        return View(users);
+    }
 }
