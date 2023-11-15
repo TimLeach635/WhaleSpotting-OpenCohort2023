@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Dynamic;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WhaleSpotting.Data;
@@ -15,17 +16,27 @@ public class SightingController : Controller
 {
     private readonly ILogger<SightingController> _logger;
     private readonly ApplicationDbContext _context;
+    private readonly UserManager<IdentityUser> _userManager;
 
     public SightingController(ILogger<SightingController> logger,
-        ApplicationDbContext context)
+        ApplicationDbContext context,
+        UserManager<IdentityUser> userManager)
     {
         _logger = logger;
         _context = context;
+        _userManager = userManager;
     }
 
     [AllowAnonymous]
     public IActionResult Index()
     {
+        if (User.Identity != null)
+        {
+            var wsUser = _context.WsUsers!
+                .Single(u => u.IdentityUser!.Id == _userManager.GetUserId(User));
+            ViewData["WsUserId"] = wsUser.Id;
+        }
+
         var approvedSightings = _context.Sightings!
             .Where(sighting => sighting.Approved)
             .Include(s => s.User)
