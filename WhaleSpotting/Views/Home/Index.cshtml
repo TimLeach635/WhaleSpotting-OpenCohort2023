@@ -1,6 +1,4 @@
 @model WhaleSpotting.ViewModels.HomeViewModel
-<link rel="stylesheet" href="carouselStyle.css">
-<script src="carouselScripts.js"></script>
 
 @{
 ViewData["Title"] = "Home Page";
@@ -18,7 +16,7 @@ ViewData["Title"] = "Home Page";
     </div>
   </div>
 </div>
-<main>
+<main style="margin-bottom: 100px; border-bottom: 100px;">
     <p class="container-fluid bg-2 text-center">
         Recently we have finally seen an increase in whale numbers across the globe due to conservation efforts, 
         and we would love to keep the public and scientific community engaged with these efforts. We have created 
@@ -37,33 +35,42 @@ ViewData["Title"] = "Home Page";
         alt="Whale species button"><span class="d-inline-block align-middle">Whale Species</span></a>
     </div>
   </section>
+    
+  <section class="slideshow">
 
-
-
-    <img src="https://i.pinimg.com/originals/2a/b9/d9/2ab9d9e399709e1309a05e5abc169ecc.jpg" style="width:50%">
-
-
-
-  <section>
-    <section>
-    <h2>This Week's Sightings</h2> 
-    <div class="mySlides fade">
-        <div class="numbertext">1 / 3</div>
-        <img src="https://i.pinimg.com/originals/2a/b9/d9/2ab9d9e399709e1309a05e5abc169ecc.jpg" style="width:50%">
-        <div class="text">Caption Text</div>
+    <h2 style="text-align:center">This Week's Sightings</h2> 
+    
+    <div class="slide active">
+        <img src="https://i.pinimg.com/originals/2a/b9/d9/2ab9d9e399709e1309a05e5abc169ecc.jpg" style="width:100%">
     </div>
 
-    <div class="mySlides fade">
-      <div class="numbertext">2 / 3</div>
-      <img src="https://pix.avax.news/avaxnews/d0/32/000132d0.jpeg" style="width:50%">
-      <div class="text">Caption Two</div>
+    <div class="slide">
+      <img src="https://pix.avax.news/avaxnews/d0/32/000132d0.jpeg" style="width:100%">
     </div>
 
-    <div class="mySlides fade">
-      <div class="numbertext">3 / 3</div>
-      <img src="https://pix.avax.news/avaxnews/d0/32/000132d0.jpeg" style="width:50%">
-      <div class="text">Caption Three</div>
+    <div class="slide">
+      <img src="https://th.bing.com/th/id/OIP.zs5LzGxsrWBfJ_iEfx2FcAHaE7?pid=ImgDet&rs=1" style="width:100%">
     </div>
-</section>
+    
+    <div class="slide">
+    <img src="https://media.istockphoto.com/photos/pilot-whale-pod-picture-id616865302?k=6&m=616865302&s=612x612&w=0&h=JSy_ZdPdVLYg41RXNCj3b_PGYiImSoGT2HJISV74-fI=" alt="Image 4">
+    </div>
+
+    <div class="slide">
+    <img src="https://www.antarctica.gov.au/site/assets/files/45706/20110408_peterduley_seiwhale_feed_img7420_permit775-1875.1024x0.jpg" alt="Image 7">
+    </div>
+    
+    <div>
+      <a class="prev" onclick="nextSlide()">&#10094;</a>
+      <a class="next" onclick="previousSlide()">&#10095;</a>
+    </div>
+    <br>
+
+  </section>
+  <div></div>
+  
 
 </main>
+  
+
+
