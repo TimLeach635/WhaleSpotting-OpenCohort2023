@@ -27,7 +27,7 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        if (User.Identity != null)
+        if (User.Identity!.IsAuthenticated)
         {
             var wsUser = _context.WsUsers!
                 .Single(u => u.IdentityUser!.Id == _userManager.GetUserId(User));
@@ -51,7 +51,7 @@ public class HomeController : Controller
 
     public IActionResult GetInvolved()
     {
-        if (User.Identity != null)
+        if (User.Identity!.IsAuthenticated)
         {
             var wsUser = _context.WsUsers!
                 .Single(u => u.IdentityUser!.Id == _userManager.GetUserId(User));
@@ -66,7 +66,7 @@ public class HomeController : Controller
 
     public IActionResult Privacy()
     {
-        if (User.Identity != null)
+        if (User.Identity!.IsAuthenticated)
         {
             var wsUser = _context.WsUsers!
                 .Single(u => u.IdentityUser!.Id == _userManager.GetUserId(User));
@@ -79,7 +79,7 @@ public class HomeController : Controller
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {
-        if (User.Identity != null)
+        if (User.Identity!.IsAuthenticated)
         {
             var wsUser = _context.WsUsers!
                 .Single(u => u.IdentityUser!.Id == _userManager.GetUserId(User));

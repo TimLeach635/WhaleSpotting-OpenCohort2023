@@ -18,10 +18,12 @@ public class SightingController : Controller
     private readonly ApplicationDbContext _context;
     private readonly UserManager<IdentityUser> _userManager;
 
-    public SightingController(ILogger<SightingController> logger,
+    public SightingController
+    (
+        ILogger<SightingController> logger,
         ApplicationDbContext context,
-        UserManager<IdentityUser> userManager)
-    {
+        UserManager<IdentityUser> userManager
+    ) {
         _logger = logger;
         _context = context;
         _userManager = userManager;
@@ -30,7 +32,7 @@ public class SightingController : Controller
     [AllowAnonymous]
     public IActionResult Index()
     {
-        if (User.Identity != null)
+        if (User.Identity!.IsAuthenticated)
         {
             var wsUser = _context.WsUsers!
                 .Single(u => u.IdentityUser!.Id == _userManager.GetUserId(User));
@@ -49,6 +51,13 @@ public class SightingController : Controller
     [HttpPost("")]
     public IActionResult NewSighting([FromForm] NewSightingFormViewModel newSightingViewModel)
     {
+        if (User.Identity!.IsAuthenticated)
+        {
+            var wsUser = _context.WsUsers!
+                .Single(u => u.IdentityUser!.Id == _userManager.GetUserId(User));
+            ViewData["WsUserId"] = wsUser.Id;
+        }
+
         var speciesId = newSightingViewModel.SpeciesId;
         Species species = _context.Species!
             .Where(speciesCheck => speciesCheck.Id == speciesId)
@@ -64,6 +73,13 @@ public class SightingController : Controller
     [HttpGet("new")]
     public IActionResult NewSightingForm()
     {
+        if (User.Identity!.IsAuthenticated)
+        {
+            var wsUser = _context.WsUsers!
+                .Single(u => u.IdentityUser!.Id == _userManager.GetUserId(User));
+            ViewData["WsUserId"] = wsUser.Id;
+        }
+        
         var species = _context.Species!.ToList();
         var sighting = new Sighting();
         var viewModel = new NewSightingFormViewModel

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using WhaleSpotting.Data;
 using WhaleSpotting.Models;
 
@@ -9,16 +10,29 @@ public class SpeciesController : Controller
 {
     private readonly ILogger<SpeciesController> _logger;
     private readonly ApplicationDbContext _context;
+    private readonly UserManager<IdentityUser> _userManager;
 
-    public SpeciesController(ILogger<SpeciesController> logger, ApplicationDbContext context)
-    {
+    public SpeciesController
+    (
+        ILogger<SpeciesController> logger, 
+        ApplicationDbContext context, 
+        UserManager<IdentityUser> userManager
+    ) {
         _logger = logger;
         _context = context;
+        _userManager = userManager;
     }
 
     [HttpGet("{slug}")]
     public IActionResult UniqueSpecies([FromRoute] string slug)
     {
+        if (User.Identity!.IsAuthenticated)
+        {
+            var wsUser = _context.WsUsers!
+                .Single(u => u.IdentityUser!.Id == _userManager.GetUserId(User));
+            ViewData["WsUserId"] = wsUser.Id;
+        }
+
         var species = _context.Species;
         var uniqueSpecies= species!.Single(s => s.Slug == slug);
 
@@ -27,6 +41,13 @@ public class SpeciesController : Controller
 
     public IActionResult Index()
     {
+         if (User.Identity!.IsAuthenticated)
+        {
+            var wsUser = _context.WsUsers!
+                .Single(u => u.IdentityUser!.Id == _userManager.GetUserId(User));
+            ViewData["WsUserId"] = wsUser.Id;
+        }
+
         var species = _context.Species!.ToList();
         return View(species);
     }
