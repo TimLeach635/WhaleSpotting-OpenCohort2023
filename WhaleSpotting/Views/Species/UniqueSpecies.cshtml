@@ -3,6 +3,10 @@
     ViewData["Title"] = Model.Name;
 }
 
+<button style="background-color: rgb(233, 70, 70); border-radius: 8px; top: 10px; left: 10px">
+  <a class="nav-link text-dark" asp-area="" asp-controller="Species" asp-action="Index">Back</a>
+</button>
+
 <div>
   <img src="@Model.PhotoUrl" class="uniqueSpecies-photo" alt="@Model.Name photo">
   <div>
