@@ -1,8 +1,8 @@
-DELETE FROM public."Sightings";
+TRUNCATE TABLE public."Sightings";
 
-DELETE FROM public."Species";
+TRUNCATE TABLE public."Species";
 
-DELETE FROM public."Photos";
+TRUNCATE TABLE public."Photos";
 
 INSERT INTO public."Species"
 VALUES
