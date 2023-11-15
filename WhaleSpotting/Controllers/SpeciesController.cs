@@ -23,8 +23,8 @@ public class SpeciesController : Controller
         _userManager = userManager;
     }
 
-    [HttpGet("{slug}")]
-    public IActionResult UniqueSpecies([FromRoute] string slug)
+    [HttpGet("{id}")]
+    public IActionResult UniqueSpecies([FromRoute] int id)
     {
         if (User.Identity!.IsAuthenticated)
         {
@@ -34,7 +34,7 @@ public class SpeciesController : Controller
         }
 
         var species = _context.Species;
-        var uniqueSpecies= species!.Single(s => s.Slug == slug);
+        var uniqueSpecies= species!.Single(s => s.Id == id);
 
         return View(uniqueSpecies);
     }

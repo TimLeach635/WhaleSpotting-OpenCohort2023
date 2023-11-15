@@ -1,0 +1,11 @@
+@model WhaleSpotting.ViewModels.NewSightingFormViewModel
+
+@{
+  ViewData["Title"] = "Sighting Submitted";
+}
+
+<div class="text-center">
+  <h1>Your Whale Sighting Has Been Successfully Submitted</h1>
+  <p>Thank you for your submission. You can <a href="@Url.Action("NewSightingForm", "Sighting")">make another sighting submission here</a>.</p>
+  <p>To return to Home <a href="@Url.Action("Index", "Home")">please click here</a>.</p>
+</div>

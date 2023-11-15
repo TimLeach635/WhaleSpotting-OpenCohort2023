@@ -27,6 +27,11 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
+        if (TempData.TryGetValue("ConfirmationMessage", out var confirmationMessage))
+        {
+            ViewData["ConfirmationMessage"] = confirmationMessage;
+        }
+        
         if (User.Identity!.IsAuthenticated)
         {
             var wsUser = _context.WsUsers!
