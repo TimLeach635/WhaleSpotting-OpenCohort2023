@@ -64,7 +64,7 @@ public class SightingController : Controller
             newSighting.Description = newSightingViewModel.Sighting!.Description;
             newSighting.Species = newSightingViewModel.Sighting!.Species;
             newSighting.Date = DateOnly.FromDateTime(newSightingViewModel.Sighting!.Date);
-            newSighting.Photos = newSightingViewModel.Sighting!.Photos;
+            newSighting.Photos = new List<Photo> { new Photo { Image = newSightingViewModel.Sighting!.PhotoUrl } };
 
             var speciesId = newSightingViewModel.SpeciesId;
             Species selectedSpecies = _context.Species!
