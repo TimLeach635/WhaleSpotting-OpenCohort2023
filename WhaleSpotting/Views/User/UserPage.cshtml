@@ -19,21 +19,23 @@
         <div class="col col-lg-2"></div>
             <div class="col-md-auto text-left">
                 <h1>My Sightings</h1>
-                <ul>
-                    <div class="my-sightings-list row row-cols-1 row-cols-md-3 g-4">
-                        @foreach (var sighting in @Model.Sightings)
-                        {
-                            <li class="card mb-3 rounded-9">
-                                <div class="card-body">
-                                    <h4 class="card-title">@sighting.Date</h4>
-                                    <p class="card-text"> Latitute: @sighting.Latitude Longitude: @sighting.Longitude</p>
-                                    <p class="card-text"> Description of Sighting: @sighting.Description</p>
-                                </div>
-                            </li>
-                        }
-                    </div>
-                </ul>
+                    <ul>
+                        <div class="my-sightings-list row row-cols-1 row-cols-md-3 g-4">
+                            @foreach (var sighting in @Model.Sightings)
+                            {
+                                <li class="card mb-3 rounded-9">
+                                    <div class="card-body">
+                                        <h4 class="card-title">@sighting.Date</h4>
+                                        <p class="card-text"> Latitute: @sighting.Latitude Longitude: @sighting.Longitude</p>
+                                        <p class="card-text"> Description of Sighting: @sighting.Description</p>
+                                    </div>
+                                </li>
+                            }
+                        </div>
+                    </ul>
+                
             </div>
         <div class="col col-lg-2"></div>
+        
     </div>
 </div>
