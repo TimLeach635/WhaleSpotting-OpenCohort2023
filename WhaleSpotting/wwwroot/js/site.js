@@ -26,3 +26,10 @@ function previousSlide() {
 firstSlide();
 
 setInterval(nextSlide, 5000);
+
+function deleteSighting(sightingId)
+{
+  fetch(`/admin/sighting/${sightingId}`, {
+    method: "DELETE",
+  });
+}
