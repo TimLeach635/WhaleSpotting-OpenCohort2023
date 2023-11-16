@@ -4,6 +4,7 @@ using WhaleSpotting.Models;
 using WhaleSpotting.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 
 namespace WhaleSpotting.Controllers;
@@ -26,7 +27,7 @@ public class AdminController : Controller
         _userManager = userManager;
     }
 
-     public IActionResult Index()
+    public IActionResult Index()
     {
         if (User.Identity!.IsAuthenticated)
         {
@@ -43,6 +44,7 @@ public class AdminController : Controller
 
         return View(unapprovedSightings);
     }
+
     [HttpPost]
     public IActionResult ApproveSightings(List<int> selectedSightingIds)
     {
@@ -70,24 +72,25 @@ public class AdminController : Controller
         return RedirectToAction("Index");
     }
 
-     public IActionResult AssignAdmin()
+    public IActionResult AssignAdmin()
     {
         return View();
     }
 
     [HttpPost("")]
-    public IActionResult CheckInput([FromForm] string userinput) 
+    public async Task<IActionResult> CheckInput([FromForm] string userinput) 
     {
         var users = _context.WsUsers!
+            .Include(u => u.IdentityUser)
             .ToList();
         foreach(var user in users)
         {
             if(user.Name == userinput)
             {
-            Console.WriteLine(user.Name);
+                await _userManager.AddToRoleAsync(user.IdentityUser, "Admin");
             }
         } 
         
-        return Ok();
+        return RedirectToAction("AssignAdmin");
     }
 }
