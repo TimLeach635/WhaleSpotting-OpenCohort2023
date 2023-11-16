@@ -4,7 +4,6 @@ using WhaleSpotting.Models;
 using WhaleSpotting.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 
 namespace WhaleSpotting.Controllers;
@@ -87,7 +86,7 @@ public class AdminController : Controller
         {
             if(user.Name == userinput)
             {
-                await _userManager.AddToRoleAsync(user.IdentityUser, "Admin");
+                await _userManager.AddToRoleAsync(user.IdentityUser!, "Admin");
             }
         } 
         
