@@ -1,5 +1,7 @@
 @model WhaleSpotting.ViewModels.NewSightingFormViewModel
 @using System.Security.Claims
+@using WhaleSpotting.ViewModels
+
 
 @{
   ViewData["Title"] = "Add a sighting";
@@ -28,11 +30,6 @@
         }
       </select>
     </div>
-
-    @if (User.Identity.IsAuthenticated)
-        {
-            <input type="hidden" asp-for="Sighting!.User.Id" value="@User.FindFirstValue(ClaimTypes.NameIdentifier)" />
-        }
     
     <div class="my-2">
       <label for="Latitude">Latitude:</label>

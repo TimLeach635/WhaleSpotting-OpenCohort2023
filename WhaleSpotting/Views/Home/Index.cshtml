@@ -1,4 +1,5 @@
 @model WhaleSpotting.ViewModels.HomeViewModel
+
 @{
 ViewData["Title"] = "Home Page";
 }
@@ -15,14 +16,13 @@ ViewData["Title"] = "Home Page";
     </div>
   </div>
 </div>
-<main>
-  <br>
+<main style="margin-bottom: 100px; border-bottom: 100px;">
     <p class="container-fluid bg-2 text-center">
         Recently we have finally seen an increase in whale numbers across the globe due to conservation efforts, 
         and we would love to keep the public and scientific community engaged with these efforts. We have created 
         this website to help encourage and track whale spotting all across the world!
     </p>
-  <section class= "section-whale-links">
+  <section class= "section-whale-links" style="padding-bottom: 50px">
     <div class="whale-links"> 
       <a asp-controller="Sighting" asp-action="NewSightingForm" class="home-page-action-button" style="
         background-image: url('https://images.unsplash.com/photo-1568430462989-44163eb1752f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzODI5NXwwfDF8c2VhcmNofDN8fHdoYWxlc3xlbnwwfHx8fDE2OTk0NTMzNzh8MA&ixlib=rb-4.0.3&q=80&w=400');" 
@@ -34,20 +34,27 @@ ViewData["Title"] = "Home Page";
         alt="Whale species button"><span class="align-middle">Whale Species</span></a>
     </div>
   </section>
-</main>
 
-@if (Model.LastWeekPhotos != null && Model.LastWeekPhotos.Count > 0)
-{
-    <ul>
-        @foreach (var photo in Model.LastWeekPhotos)
-        {
-            <li>
-                <img src="@photo.Image" alt='@(
-                    photo.Sighting != null
-                        ? $"Whale sighting on {photo.Sighting.Date}"
-                        : "Whale sighting"
-                )'>
-            </li>
-        }
-    </ul>
-}
+  @if (Model.LastWeekPhotos != null && Model.LastWeekPhotos.Count > 0)
+  {
+    <section class="recent-photos__slideshow">
+
+      <h2 style="text-align:center">This Week's Sightings</h2> 
+
+      @foreach (var photo in Model.LastWeekPhotos)
+      {
+        <div class="recent-photos__slide">
+          <img src="@photo.Image" style="width:100%">
+        </div>
+      }
+      
+      <div>
+        <a class="recent-photos__prev" onclick="nextSlide()">&#10094;</a>
+        <a class="recent-photos__next" onclick="previousSlide()">&#10095;</a>
+      </div>
+      <br>
+
+    </section>
+  }
+
+</main>

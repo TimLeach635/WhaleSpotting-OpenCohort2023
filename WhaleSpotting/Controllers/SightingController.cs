@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Dynamic;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WhaleSpotting.Data;
@@ -15,17 +16,29 @@ public class SightingController : Controller
 {
     private readonly ILogger<SightingController> _logger;
     private readonly ApplicationDbContext _context;
+    private readonly UserManager<IdentityUser> _userManager;
 
-    public SightingController(ILogger<SightingController> logger,
-        ApplicationDbContext context)
-    {
+    public SightingController
+    (
+        ILogger<SightingController> logger,
+        ApplicationDbContext context,
+        UserManager<IdentityUser> userManager
+    ) {
         _logger = logger;
         _context = context;
+        _userManager = userManager;
     }
 
     [AllowAnonymous]
     public IActionResult Index()
     {
+        if (User.Identity!.IsAuthenticated)
+        {
+            var wsUser = _context.WsUsers!
+                .Single(u => u.IdentityUser!.Id == _userManager.GetUserId(User));
+            ViewData["WsUserId"] = wsUser.Id;
+        }
+
         var approvedSightings = _context.Sightings!
             .Where(sighting => sighting.Approved)
             .Include(s => s.User)
@@ -39,18 +52,29 @@ public class SightingController : Controller
     [HttpPost("")]
     public IActionResult NewSighting([FromForm] NewSightingFormViewModel newSightingViewModel)
     {
+        var wsUser = _context.WsUsers!
+            .Single(u => u.IdentityUser!.Id == _userManager.GetUserId(User));
+        ViewData["WsUserId"] = wsUser.Id;
+        
         try
         {
+            var newSighting = new Sighting();
+            newSighting.Latitude = newSightingViewModel.Sighting!.Latitude;
+            newSighting.Longitude = newSightingViewModel.Sighting!.Longitude;
+            newSighting.Description = newSightingViewModel.Sighting!.Description;
+            newSighting.Species = newSightingViewModel.Sighting!.Species;
+            newSighting.Date = DateOnly.FromDateTime(newSightingViewModel.Sighting!.Date);
+            newSighting.Photos = newSightingViewModel.Sighting!.Photos;
+
             var speciesId = newSightingViewModel.SpeciesId;
             Species selectedSpecies = _context.Species!
                 .Where(speciesCheck => speciesCheck.Id == speciesId)
                 .First();
-            newSightingViewModel.Sighting!.Species = selectedSpecies;
+            newSighting.Species = selectedSpecies;
 
-            var userId = newSightingViewModel.Sighting.User!.Id;
-            newSightingViewModel.Sighting!.User = new WsUser { Id = userId }; 
+            newSighting.User = wsUser; 
 
-            _context.Sightings?.Add(newSightingViewModel.Sighting!);
+            _context.Sightings?.Add(newSighting);
             _context.SaveChanges();
             
             return RedirectToAction("SightingSubmitted");
@@ -63,11 +87,10 @@ public class SightingController : Controller
     }
 
     var species = _context.Species!.ToList();
-    var sighting = new Sighting();
     var viewModel = new NewSightingFormViewModel
     {
         ListOfSpecies = species,
-        Sighting = sighting,
+        Sighting = new SightingViewModel(),
     };
 
     ViewData["ConfirmationMessage"] = TempData["ConfirmationMessage"];
@@ -79,13 +102,23 @@ public class SightingController : Controller
     [HttpGet("new")]
     public IActionResult NewSightingForm()
     {
+        var wsUser = _context.WsUsers!
+            .Single(u => u.IdentityUser!.Id == _userManager.GetUserId(User));
+        ViewData["WsUserId"] = wsUser.Id;
+        
         var species = _context.Species!.ToList();
-        var sighting = new Sighting();
+        var sighting = new SightingViewModel();
         var viewModel = new NewSightingFormViewModel
         {
             ListOfSpecies = species,
             Sighting = sighting,
         };
         return View(viewModel);
+    }
+
+    [HttpGet("submitted")]
+    public IActionResult SightingSubmitted()
+    {
+        return View();
     }
 }
