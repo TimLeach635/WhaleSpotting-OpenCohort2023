@@ -5,12 +5,11 @@
 }
 
 <div class="container-fluid">
-    <div class="row">
-        <div class="row justify-content-center">
-            <div class="col-md-4 text-center">
-                <img src="@Model.ProfileImageUrl" alt="Profile image for @Model.Name" class="img-fluid" style="width: 200px;height: 200px;border-radius: 50%;">
-                <h2 style="font-size:20px; color:black; margin-top:10px;">@Model.Name</h2>
-                <p style="font-size:18px; color:black; margin-top:10px;">@Model.Bio</p> 
+    <div class="row justify-content-center">
+        <div class="col-md-4 text-center">
+            <img src="@Model.ProfileImageUrl" alt="Profile image for @Model.Name" class="img-fluid" style="width: 200px;height: 200px;border-radius: 50%;">
+            <h2 style="font-size:20px; color:black; margin-top:10px;">@Model.Name</h2>
+            <p style="font-size:18px; color:black; margin-top:10px;">@Model.Bio</p> 
         </div>
     </div>        
 </div>
@@ -20,24 +19,21 @@
         <div class="col col-lg-2"></div>
             <div class="col-md-auto text-left">
                 <h1>My Sightings</h1>
-                    <ul>
-                        <div>
-                            <div class="my-sightings-list row row-cols-1 row-cols-md-3 g-4">
-                                @foreach (var sighting in @Model.Sightings)
-                                {
-                                    <li class="card mb-3 rounded-9">
-                                        <div class="card-body">
-                                            <h4 class="card-title">@sighting.Date</h4>
-                                            <p class="card-text"> Latitute: @sighting.Latitude Longitude: @sighting.Longitude</p>
-                                            <p class="card-text"> Description of Sighting: @sighting.Description</p>
-                                        </div>
-                                    </li>
-                                }
-                        </div>
-                    </ul>
-                
+                <ul>
+                    <div class="my-sightings-list row row-cols-1 row-cols-md-3 g-4">
+                        @foreach (var sighting in @Model.Sightings)
+                        {
+                            <li class="card mb-3 rounded-9">
+                                <div class="card-body">
+                                    <h4 class="card-title">@sighting.Date</h4>
+                                    <p class="card-text"> Latitute: @sighting.Latitude Longitude: @sighting.Longitude</p>
+                                    <p class="card-text"> Description of Sighting: @sighting.Description</p>
+                                </div>
+                            </li>
+                        }
+                    </div>
+                </ul>
             </div>
         <div class="col col-lg-2"></div>
-        
     </div>
 </div>
