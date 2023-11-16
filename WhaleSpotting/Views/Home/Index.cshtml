@@ -35,25 +35,27 @@ ViewData["Title"] = "Home Page";
         alt="Whale species button"><span class="d-inline-block align-middle">Whale Species</span></a>
     </div>
   </section>
-    
-  <section class="slideshow">
 
-    <h2 style="text-align:center">This Week's Sightings</h2> 
-    
-    @foreach (var photo in Model.LastWeekPhotos)
-    {
-      <div class="slide">
+  @if (Model.LastWeekPhotos != null && Model.LastWeekPhotos.Count > 0)
+  {
+    <section class="slideshow">
+
+      <h2 style="text-align:center">This Week's Sightings</h2> 
+
+      @foreach (var photo in Model.LastWeekPhotos)
+      {
+        <div class="slide">
           <img src="@photo.Image" style="width:100%">
+        </div>
+      }
+      
+      <div>
+        <a class="prev" onclick="nextSlide()">&#10094;</a>
+        <a class="next" onclick="previousSlide()">&#10095;</a>
       </div>
-    }
-    
-    <div>
-      <a class="prev" onclick="nextSlide()">&#10094;</a>
-      <a class="next" onclick="previousSlide()">&#10095;</a>
-    </div>
-    <br>
+      <br>
 
-  </section>
-  <div></div>
+    </section>
+  }
 
 </main>
