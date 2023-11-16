@@ -1,8 +1,4 @@
-TRUNCATE TABLE public."Sightings";
-
-TRUNCATE TABLE public."Species";
-
-TRUNCATE TABLE public."Photos";
+TRUNCATE TABLE public."Photos", public."Sightings", public."Species";
 
 INSERT INTO public."Species"
 VALUES
@@ -22,35 +18,37 @@ VALUES
 (14, 'Pygmy Right Whale', 'Pygmy right whales have small, flat and ridged heads that are heavily accentuated by their strongly arched jawlines. Extremely pronounced, their jawlines are unmistakable and become more exaggerated as they grow older. Filter-feeding whales, pygmy right whales have an ivory-coloured baleen that is threaded with around 213 to 230 plates on each side. Unlike right whales, pygmy right whales have sleeker, more streamlined bodies that are topped with a small, sickle-shaped dorsal fin. On either side they have small, narrow and rounded flippers and underneath they have beautiful pale highlighting that runs from their lower jaw, along the belly and all the way to the tail. With an absence of lumpy callosities and resembling rorqual whales, pygmy right whales are sometimes confused with minke whales when seen in the wild.', 'https://us.whales.org/wp-content/uploads/sites/2/2019/06/pygmy-right-whale-sg-robert-pitman.jpg', 'Pygmy\_Right\_Whale'),
 (15, 'Long-Finned Pilot Whale', 'As their name suggests, they have two very long flippers; they are crescent-shaped and have pointy tips. Adult pilot whales are black or dark grey and have a lighter grey saddle patch on the back behind the dorsal fin and a white anchor-shaped patch on the underside. Pilot whale babies are paler coloured. Pilot whales are long, robust whales and have a thick-set, curved (sometimes hooked), and very prominent dorsal fin. The head is bulbous with no beak. Male pilot whales are larger than females, and they have a more bulbous forehead and chunkier dorsal fin.', 'https://oceana.org/wp-content/uploads/sites/18/32_2.jpg', 'Long-Finned\_Pilot\_Whale'),
 (16, 'Fin Whale', 'Truly handsome individuals, fin whales have long, slender bodies that can grow up to a whopping 80 feet in length. With a distinct ridge running behind the dorsal fin, in the USA they have earned themselves the nickname “razorbacks” and cut through the water with ease. Like other baleen whales, fin whales have expandable pleats that allow them to take in huge amounts of water and food. They then sieve the water out through their baleen plates before ingesting their delicious meal, consuming up to 2,000kg of krill in a day.', 'https://upload.wikimedia.org/wikipedia/commons/c/ce/Finhval_(1).jpg', 'Fin_Whale');
-INSERT INTO public."Sightings"("Latitude", "Longitude", "Date", "Description", "SpeciesId", "Approved")
+
+INSERT INTO public."Sightings"
+    ("Latitude", "Longitude", "Date", "Description", "SpeciesId", "Approved", "UserId")
 VALUES
-(51.506523, -0.077999, '09/11/2023', 'Whale spotted in the Thames', 1, TRUE),
-(57.28373, -4.470851, '09/11/2023', 'Nessie!', 1, TRUE),
-(35.315483, 136.1458, '09/11/2023', '鯨', 1, FALSE),
-(5.405249, -152.760568, '09/11/2023', 'A majestic humpback whale breaching in the sunlight.', 1, FALSE),
-(-36.883362, -145.107862, '08/11/2023', 'A playful pod of dolphins swimming alongside a gentle gray whale.', 1, FALSE),
-(24.662759, -179.485124, '07/11/2023', 'A curious beluga whale, known for its distinctive white coloring.', 1, TRUE),
-(-3.148761, -11.71846, '06/11/2023', 'A massive blue whale, the largest animal on Earth, gracefully gliding through the ocean.', 1, TRUE),
-(-10.301309, -60.784694, '05/11/2023', 'A close-up of a killer whale, showcasing its striking black and white pattern.', 1, TRUE),
-(-18.663142, -94.593933, '04/11/2023', 'Two friendly narwhals, known for their long, spiral tusks, swimming together.', 1, FALSE),
-(33.502385, -31.561806, '25/10/2023', 'A family of orcas, also known as killer whales, hunting together.', 1, FALSE),
-(-47.22574, -39.246788, '14/10/2023', 'An adorable baby whale calf swimming alongside its mother.', 1, FALSE),
-(2.617893, -62.166993, '02/10/2023', 'A rare sighting of a sperm whale, with its large, square head.', 1, TRUE),
-(-35.697293, -134.209864, '19/09/2023', 'A group of humpback whales engaged in bubble-net feeding.', 1, TRUE),
-(15.80395, -102.703247, '05/09/2023', 'A breaching minke whale, leaping out of the water with elegance.', 1, TRUE),
-(-20.815488, -144.931229, '21/08/2023', 'A serene scene of a gray whale gliding through calm waters.', 1, TRUE),
-(45.697439, -89.165199, '05/08/2023', 'A pod of pilot whales surfacing in unison.', 1, FALSE),
-(37.66826, -79.067946, '19/07/2023', 'A close encounter with a curious fin whale.', 1, TRUE),
-(-11.724918, -162.936689, '01/07/2023', 'A picturesque view of a peaceful whale shark, the world''s largest fish.', 1, FALSE),
-(-25.587501, -44.727909, '12/06/2023', 'A stunning shot of a sei whale with its distinctive dorsal fin.', 1, FALSE),
-(6.291582, -57.184805, '23/05/2023', 'An artistic portrayal of a mystical and elusive beaked whale.', 1, FALSE),
-(-19.330142, -97.422455, '02/05/2023', 'A charming image of a smiling false killer whale.', 1, FALSE),
-(30.019302, -48.475617, '10/04/2023', 'An intimate moment between a mother and calf right whale.', 1, FALSE),
-(-38.543412, -149.444209, '18/03/2023', 'A group of playful spinner dolphins leaping out of the water.', 1, TRUE),
-(-29.097924, -73.666938, '22/02/2023', 'A breathtaking underwater view of a breaching humpback whale.', 1, FALSE),
-(-10.819979, -127.288041, '28/01/2023', 'A tranquil scene of a lazy right whale lounging near the surface.', 1, FALSE),
-(-46.664148, -175.127072, '02/01/2023', 'A heartwarming image of a baby narwhal and its unique tusk.', 1, FALSE),
-(38.194419, -54.825209, '06/12/2022', 'A regal depiction of a killer whale in the wild.', 1, FALSE);
+    (51.506523, -0.077999, '09/11/2023', 'Whale spotted in the Thames', 1, TRUE, 1),
+    (57.28373, -4.470851, '09/11/2023', 'Nessie!', 1, TRUE, 1),
+    (35.315483, 136.1458, '09/11/2023', '鯨', 1, FALSE, 1),
+    (5.405249, -152.760568, '09/11/2023', 'A majestic humpback whale breaching in the sunlight.', 1, FALSE, 1),
+    (-36.883362, -145.107862, '08/11/2023', 'A playful pod of dolphins swimming alongside a gentle gray whale.', 1, FALSE, 1),
+    (24.662759, -179.485124, '07/11/2023', 'A curious beluga whale, known for its distinctive white coloring.', 1, TRUE, 1),
+    (-3.148761, -11.71846, '06/11/2023', 'A massive blue whale, the largest animal on Earth, gracefully gliding through the ocean.', 1, TRUE, 1),
+    (-10.301309, -60.784694, '05/11/2023', 'A close-up of a killer whale, showcasing its striking black and white pattern.', 1, TRUE, 1),
+    (-18.663142, -94.593933, '04/11/2023', 'Two friendly narwhals, known for their long, spiral tusks, swimming together.', 1, FALSE, 1),
+    (33.502385, -31.561806, '25/10/2023', 'A family of orcas, also known as killer whales, hunting together.', 1, FALSE, 1),
+    (-47.22574, -39.246788, '14/10/2023', 'An adorable baby whale calf swimming alongside its mother.', 1, FALSE, 1),
+    (2.617893, -62.166993, '02/10/2023', 'A rare sighting of a sperm whale, with its large, square head.', 1, TRUE, 1),
+    (-35.697293, -134.209864, '19/09/2023', 'A group of humpback whales engaged in bubble-net feeding.', 1, TRUE, 1),
+    (15.80395, -102.703247, '05/09/2023', 'A breaching minke whale, leaping out of the water with elegance.', 1, TRUE, 1),
+    (-20.815488, -144.931229, '21/08/2023', 'A serene scene of a gray whale gliding through calm waters.', 1, TRUE, 1),
+    (45.697439, -89.165199, '05/08/2023', 'A pod of pilot whales surfacing in unison.', 1, FALSE, 1),
+    (37.66826, -79.067946, '19/07/2023', 'A close encounter with a curious fin whale.', 1, TRUE, 1),
+    (-11.724918, -162.936689, '01/07/2023', 'A picturesque view of a peaceful whale shark, the world''s largest fish.', 1, FALSE, 1),
+    (-25.587501, -44.727909, '12/06/2023', 'A stunning shot of a sei whale with its distinctive dorsal fin.', 1, FALSE, 1),
+    (6.291582, -57.184805, '23/05/2023', 'An artistic portrayal of a mystical and elusive beaked whale.', 1, FALSE, 1),
+    (-19.330142, -97.422455, '02/05/2023', 'A charming image of a smiling false killer whale.', 1, FALSE, 1),
+    (30.019302, -48.475617, '10/04/2023', 'An intimate moment between a mother and calf right whale.', 1, FALSE, 1),
+    (-38.543412, -149.444209, '18/03/2023', 'A group of playful spinner dolphins leaping out of the water.', 1, TRUE, 1),
+    (-29.097924, -73.666938, '22/02/2023', 'A breathtaking underwater view of a breaching humpback whale.', 1, FALSE, 1),
+    (-10.819979, -127.288041, '28/01/2023', 'A tranquil scene of a lazy right whale lounging near the surface.', 1, FALSE, 1),
+    (-46.664148, -175.127072, '02/01/2023', 'A heartwarming image of a baby narwhal and its unique tusk.', 1, FALSE, 1),
+    (38.194419, -54.825209, '06/12/2022', 'A regal depiction of a killer whale in the wild.', 1, FALSE, 1);
 
 DO $$
 DECLARE
@@ -59,32 +57,35 @@ BEGIN
 
 SELECT COALESCE(MIN("Id"), 0) INTO FirstSightingId FROM public."Sightings";
 
-INSERT INTO public."Photos" VALUES (FirstSightingId, 'https://th.bing.com/th/id/R.c22c0a1d980952a6c57297a4d5a8f1d2?rik=MJTE10TaKcZYmw&riu=http%3A%2F%2Fassets.wwf.org.uk%2Fimg%2Foriginal%2F03_wwf_whale_a_geoff_caddick__pa_1_.jpg&ehk=hLuj7uqtxIei4M%2FH52O0ODRH6Q9XZ4fIEJjgrKTSGb4%3D&risl=&pid=ImgRaw&r=0', FirstSightingId);
-INSERT INTO public."Photos" VALUES (FirstSightingId + 1, 'https://www.thescottishsun.co.uk/wp-content/uploads/sites/2/2020/12/NINTCHDBPICT000315662932.jpg?strip=all&quality=100&w=1200&h=800&crop=1', FirstSightingId + 1);
-INSERT INTO public."Photos" VALUES (FirstSightingId + 2, 'https://c.files.bbci.co.uk/9A72/production/_103283593_gettyimages-496786536.jpg', FirstSightingId + 2);
-INSERT INTO public."Photos" VALUES (FirstSightingId + 3, 'https://th-thumbnailer.cdn-si-edu.com/twjiv9qG0kLGDFT4aaLn8t2FDCU=/fit-in/1072x0/https://tf-cmsv2-photocontest-smithsonianmag-prod-approved.s3.amazonaws.com/eb08062c-918b-4807-a5c3-fc67e7c3ee94.jpg', FirstSightingId + 3);
-INSERT INTO public."Photos" VALUES (FirstSightingId + 4, 'https://marinesanctuary.org/wp-content/uploads/2020/04/MBNMS-dolphins-BobTalbot.jpg', FirstSightingId + 4);
-INSERT INTO public."Photos" VALUES (FirstSightingId + 5, 'https://th.bing.com/th/id/OIP.zs5LzGxsrWBfJ_iEfx2FcAHaE7?pid=ImgDet&rs=1', FirstSightingId + 5);
-INSERT INTO public."Photos" VALUES (FirstSightingId + 6, 'https://th.bing.com/th/id/OIP.Ci9c66vAPTR3MVomj91Z1QHaDt?pid=ImgDet&rs=1', FirstSightingId + 6);
-INSERT INTO public."Photos" VALUES (FirstSightingId + 7, 'https://www.aboutanimals.com/images/killer-whale-dorsal-fin-820x448.jpg?c14113', FirstSightingId + 7);
-INSERT INTO public."Photos" VALUES (FirstSightingId + 8, 'https://1.bp.blogspot.com/-aBEyr01-oAE/YFNf5E9MzLI/AAAAAAAAL6k/QNd7HVFTCOIMdYO3-1fef0YfIGzWAkINQCLcBGAsYHQ/s1600/Narwhal%2BUnicorn%2Bof%2Bthe%2Bsea.jpg', FirstSightingId + 8);
-INSERT INTO public."Photos" VALUES (FirstSightingId + 9, 'https://www.worldatlas.com/r/w1200-q80/upload/8b/69/a8/shutterstock-631060871.jpg', FirstSightingId + 9);
-INSERT INTO public."Photos" VALUES (FirstSightingId + 10, 'https://images.fineartamerica.com/images-medium-large/mom-and-calf-humpback-whales-david-olsen.jpg', FirstSightingId + 10);
-INSERT INTO public."Photos" VALUES (FirstSightingId + 11, 'https://th.bing.com/th/id/R.098f15c0fbb798e7d9566750a9ddd1f5?rik=iCvLlTcGTbmOzg&riu=http%3A%2F%2Fwww.lazerhorse.org%2Fwp-content%2Fuploads%2F2014%2F10%2FSperm-Whale-Swimming-Rare.jpg&ehk=Dr81F7bKzgK4gZKgKKVx9I7I7n9tHOa%2BTiKrmZXxqiY%3D&risl=&pid=ImgRaw&r=0', FirstSightingId + 11);
-INSERT INTO public."Photos" VALUES (FirstSightingId + 12, 'https://images.fineartamerica.com/images-medium-large-5/humpback-whales-bubble-net-feeding-hiroya-minakuchi.jpg', FirstSightingId + 12);
-INSERT INTO public."Photos" VALUES (FirstSightingId + 13, 'https://i.pinimg.com/474x/53/36/f5/5336f516018d0f20e7ac2ad2f7d73b10--minke-whale-a-whale.jpg', FirstSightingId + 13);
-INSERT INTO public."Photos" VALUES (FirstSightingId + 14, 'https://th.bing.com/th/id/OIP.sfOo3CADMsWoGilualWikAHaE9?pid=ImgDet&rs=1', FirstSightingId + 14);
-INSERT INTO public."Photos" VALUES (FirstSightingId + 15, 'https://media.istockphoto.com/photos/pilot-whale-pod-picture-id616865302?k=6&m=616865302&s=612x612&w=0&h=JSy_ZdPdVLYg41RXNCj3b_PGYiImSoGT2HJISV74-fI=', FirstSightingId + 15);
-INSERT INTO public."Photos" VALUES (FirstSightingId + 16, 'https://i.pinimg.com/originals/2a/b9/d9/2ab9d9e399709e1309a05e5abc169ecc.jpg', FirstSightingId + 16);
-INSERT INTO public."Photos" VALUES (FirstSightingId + 17, 'https://helios-i.mashable.com/imagery/articles/02RCbD5gUjviyFQZNFO087v/hero-image.fill.size_1248x702.v1658850223.jpg', FirstSightingId + 17);
-INSERT INTO public."Photos" VALUES (FirstSightingId + 18, 'https://www.antarctica.gov.au/site/assets/files/45706/20110408_peterduley_seiwhale_feed_img7420_permit775-1875.1024x0.jpg', FirstSightingId + 18);
-INSERT INTO public."Photos" VALUES (FirstSightingId + 19, 'https://i.pinimg.com/736x/db/d0/59/dbd059813680b3e2e0492677c06c0f9f--whale-art-big-whale.jpg', FirstSightingId + 19);
-INSERT INTO public."Photos" VALUES (FirstSightingId + 20, 'https://pix.avax.news/avaxnews/d0/32/000132d0.jpeg', FirstSightingId + 20);
-INSERT INTO public."Photos" VALUES (FirstSightingId + 21, 'https://th.bing.com/th/id/R.98401e4ec3844feb3b553029305637c1?rik=C3TmKFvNqJsv4g&riu=http%3A%2F%2F2.bp.blogspot.com%2F-DF3fNpEKOJc%2FT2zdbVM-anI%2FAAAAAAAAEZI%2FqaT-8UQHeNM%2Fs1600%2FWhalesMomBaby.jpg&ehk=xIu1%2BADOPnyz86QPboQdmO%2Bn7E7M%2BCYnj%2BD74hOCaWY%3D&risl=&pid=ImgRaw&r=0', FirstSightingId + 21);
-INSERT INTO public."Photos" VALUES (FirstSightingId + 22, 'https://4.bp.blogspot.com/-xXr2quvhuXM/Uv-jqGVik7I/AAAAAAAAO1Q/XTLFZeGEP-A/s1600/Dolphins1.JPG', FirstSightingId + 22);
-INSERT INTO public."Photos" VALUES (FirstSightingId + 23, 'https://i.pinimg.com/originals/3d/1b/cd/3d1bcd76a8135ecd647c013191a3c02f.jpg', FirstSightingId + 23);
-INSERT INTO public."Photos" VALUES (FirstSightingId + 24, 'https://th.bing.com/th/id/OIP.jLt0mqRYPo1VPqI7FL52FwHaE7?pid=ImgDet&rs=1', FirstSightingId + 24);
-INSERT INTO public."Photos" VALUES (FirstSightingId + 25, 'https://th.bing.com/th/id/OIP.P-LEqpchJcY8VZVcpA3KkgHaDd?pid=ImgDet&rs=1', FirstSightingId + 25);
-INSERT INTO public."Photos" VALUES (FirstSightingId + 26, 'https://th.bing.com/th/id/OIP.zzbOC3JTPPI2aohONC60swHaJF?pid=ImgDet&rs=1', FirstSightingId + 26);
+INSERT INTO public."Photos"
+    ("Image", "SightingId")
+VALUES
+    ('https://th.bing.com/th/id/R.c22c0a1d980952a6c57297a4d5a8f1d2?rik=MJTE10TaKcZYmw&riu=http%3A%2F%2Fassets.wwf.org.uk%2Fimg%2Foriginal%2F03_wwf_whale_a_geoff_caddick__pa_1_.jpg&ehk=hLuj7uqtxIei4M%2FH52O0ODRH6Q9XZ4fIEJjgrKTSGb4%3D&risl=&pid=ImgRaw&r=0', FirstSightingId),
+    ('https://www.thescottishsun.co.uk/wp-content/uploads/sites/2/2020/12/NINTCHDBPICT000315662932.jpg?strip=all&quality=100&w=1200&h=800&crop=1', FirstSightingId + 1),
+    ('https://c.files.bbci.co.uk/9A72/production/_103283593_gettyimages-496786536.jpg', FirstSightingId + 2),
+    ('https://th-thumbnailer.cdn-si-edu.com/twjiv9qG0kLGDFT4aaLn8t2FDCU=/fit-in/1072x0/https://tf-cmsv2-photocontest-smithsonianmag-prod-approved.s3.amazonaws.com/eb08062c-918b-4807-a5c3-fc67e7c3ee94.jpg', FirstSightingId + 3),
+    ('https://marinesanctuary.org/wp-content/uploads/2020/04/MBNMS-dolphins-BobTalbot.jpg', FirstSightingId + 4),
+    ('https://th.bing.com/th/id/OIP.zs5LzGxsrWBfJ_iEfx2FcAHaE7?pid=ImgDet&rs=1', FirstSightingId + 5),
+    ('https://th.bing.com/th/id/OIP.Ci9c66vAPTR3MVomj91Z1QHaDt?pid=ImgDet&rs=1', FirstSightingId + 6),
+    ('https://www.aboutanimals.com/images/killer-whale-dorsal-fin-820x448.jpg?c14113', FirstSightingId + 7),
+    ('https://1.bp.blogspot.com/-aBEyr01-oAE/YFNf5E9MzLI/AAAAAAAAL6k/QNd7HVFTCOIMdYO3-1fef0YfIGzWAkINQCLcBGAsYHQ/s1600/Narwhal%2BUnicorn%2Bof%2Bthe%2Bsea.jpg', FirstSightingId + 8),
+    ('https://www.worldatlas.com/r/w1200-q80/upload/8b/69/a8/shutterstock-631060871.jpg', FirstSightingId + 9),
+    ('https://images.fineartamerica.com/images-medium-large/mom-and-calf-humpback-whales-david-olsen.jpg', FirstSightingId + 10),
+    ('https://th.bing.com/th/id/R.098f15c0fbb798e7d9566750a9ddd1f5?rik=iCvLlTcGTbmOzg&riu=http%3A%2F%2Fwww.lazerhorse.org%2Fwp-content%2Fuploads%2F2014%2F10%2FSperm-Whale-Swimming-Rare.jpg&ehk=Dr81F7bKzgK4gZKgKKVx9I7I7n9tHOa%2BTiKrmZXxqiY%3D&risl=&pid=ImgRaw&r=0', FirstSightingId + 11),
+    ('https://images.fineartamerica.com/images-medium-large-5/humpback-whales-bubble-net-feeding-hiroya-minakuchi.jpg', FirstSightingId + 12),
+    ('https://i.pinimg.com/474x/53/36/f5/5336f516018d0f20e7ac2ad2f7d73b10--minke-whale-a-whale.jpg', FirstSightingId + 13),
+    ('https://th.bing.com/th/id/OIP.sfOo3CADMsWoGilualWikAHaE9?pid=ImgDet&rs=1', FirstSightingId + 14),
+    ('https://media.istockphoto.com/photos/pilot-whale-pod-picture-id616865302?k=6&m=616865302&s=612x612&w=0&h=JSy_ZdPdVLYg41RXNCj3b_PGYiImSoGT2HJISV74-fI=', FirstSightingId + 15),
+    ('https://i.pinimg.com/originals/2a/b9/d9/2ab9d9e399709e1309a05e5abc169ecc.jpg', FirstSightingId + 16),
+    ('https://helios-i.mashable.com/imagery/articles/02RCbD5gUjviyFQZNFO087v/hero-image.fill.size_1248x702.v1658850223.jpg', FirstSightingId + 17),
+    ('https://www.antarctica.gov.au/site/assets/files/45706/20110408_peterduley_seiwhale_feed_img7420_permit775-1875.1024x0.jpg', FirstSightingId + 18),
+    ('https://i.pinimg.com/736x/db/d0/59/dbd059813680b3e2e0492677c06c0f9f--whale-art-big-whale.jpg', FirstSightingId + 19),
+    ('https://pix.avax.news/avaxnews/d0/32/000132d0.jpeg', FirstSightingId + 20),
+    ('https://th.bing.com/th/id/R.98401e4ec3844feb3b553029305637c1?rik=C3TmKFvNqJsv4g&riu=http%3A%2F%2F2.bp.blogspot.com%2F-DF3fNpEKOJc%2FT2zdbVM-anI%2FAAAAAAAAEZI%2FqaT-8UQHeNM%2Fs1600%2FWhalesMomBaby.jpg&ehk=xIu1%2BADOPnyz86QPboQdmO%2Bn7E7M%2BCYnj%2BD74hOCaWY%3D&risl=&pid=ImgRaw&r=0', FirstSightingId + 21),
+    ('https://4.bp.blogspot.com/-xXr2quvhuXM/Uv-jqGVik7I/AAAAAAAAO1Q/XTLFZeGEP-A/s1600/Dolphins1.JPG', FirstSightingId + 22),
+    ('https://i.pinimg.com/originals/3d/1b/cd/3d1bcd76a8135ecd647c013191a3c02f.jpg', FirstSightingId + 23),
+    ('https://th.bing.com/th/id/OIP.jLt0mqRYPo1VPqI7FL52FwHaE7?pid=ImgDet&rs=1', FirstSightingId + 24),
+    ('https://th.bing.com/th/id/OIP.P-LEqpchJcY8VZVcpA3KkgHaDd?pid=ImgDet&rs=1', FirstSightingId + 25),
+    ('https://th.bing.com/th/id/OIP.zzbOC3JTPPI2aohONC60swHaJF?pid=ImgDet&rs=1', FirstSightingId + 26);
 
 END $$;
