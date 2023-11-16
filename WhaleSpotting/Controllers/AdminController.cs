@@ -49,10 +49,22 @@ public class AdminController : Controller
 
      public IActionResult AssignAdmin()
     {
-        var users = _context.WsUsers!
-        .Include(i => i.IdentityUser)
-        .ToList();
+        return View();
+    }
 
-        return View(users);
+    [HttpPost("")]
+    public IActionResult CheckInput([FromForm] string userinput) 
+    {
+        var users = _context.WsUsers!
+            .ToList();
+        foreach(var user in users)
+        {
+            if(user.Name == userinput)
+            {
+            Console.WriteLine(user.Name);
+            }
+        } 
+        
+        return Ok();
     }
 }
