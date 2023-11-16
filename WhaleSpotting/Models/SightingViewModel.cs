@@ -11,5 +11,5 @@ public class SightingViewModel
     public float Longitude { get; set; }
     public DateTime Date { get; set; }
     public string? Description { get; set; }
-    public List<Photo>? Photos { get; set; }
+    public string? PhotoUrl { get; set; }
 }

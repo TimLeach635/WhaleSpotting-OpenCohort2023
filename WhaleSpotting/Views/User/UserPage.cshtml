@@ -21,7 +21,7 @@
                 <h1>My Sightings</h1>
                     <ul>
                         <div class="my-sightings-list row row-cols-1 row-cols-md-3 g-4">
-                            @foreach (var sighting in @Model.Sightings)
+                            @foreach (var sighting in @Model.Sightings!)
                             {
                                 <li class="card mb-3 rounded-9">
                                     <div class="card-body">

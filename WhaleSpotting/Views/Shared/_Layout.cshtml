@@ -1,6 +1,6 @@
 ﻿@{
     bool isLoggedIn = ViewData["WsUserId"] != null;
-    int loggedInWsUserId = isLoggedIn ? (int)ViewData["WsUserId"] : 0;
+    int loggedInWsUserId = isLoggedIn ? (int)ViewData["WsUserId"]! : 0;
 }
 
 <!DOCTYPE html>
