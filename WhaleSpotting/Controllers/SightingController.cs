@@ -52,17 +52,13 @@ public class SightingController : Controller
     [HttpPost("")]
     public IActionResult NewSighting([FromForm] NewSightingFormViewModel newSightingViewModel)
     {
-        if (User.Identity!.IsAuthenticated)
-        {
-            var wsUser = _context.WsUsers!
-                .Single(u => u.IdentityUser!.Id == _userManager.GetUserId(User));
-            ViewData["WsUserId"] = wsUser.Id;
-        }
+        var wsUser = _context.WsUsers!
+            .Single(u => u.IdentityUser!.Id == _userManager.GetUserId(User));
+        ViewData["WsUserId"] = wsUser.Id;
         
         try
         {
             var newSighting = new Sighting();
-            newSighting.User = new WsUser();
             newSighting.Latitude = newSightingViewModel.Sighting!.Latitude;
             newSighting.Longitude = newSightingViewModel.Sighting!.Longitude;
             newSighting.Description = newSightingViewModel.Sighting!.Description;
@@ -76,8 +72,7 @@ public class SightingController : Controller
                 .First();
             newSighting.Species = selectedSpecies;
 
-            var userId = newSighting.User!.Id;
-            newSighting.User = new WsUser { Id = userId }; 
+            newSighting.User = wsUser; 
 
             _context.Sightings?.Add(newSighting);
             _context.SaveChanges();
@@ -107,12 +102,9 @@ public class SightingController : Controller
     [HttpGet("new")]
     public IActionResult NewSightingForm()
     {
-        if (User.Identity!.IsAuthenticated)
-        {
-            var wsUser = _context.WsUsers!
-                .Single(u => u.IdentityUser!.Id == _userManager.GetUserId(User));
-            ViewData["WsUserId"] = wsUser.Id;
-        }
+        var wsUser = _context.WsUsers!
+            .Single(u => u.IdentityUser!.Id == _userManager.GetUserId(User));
+        ViewData["WsUserId"] = wsUser.Id;
         
         var species = _context.Species!.ToList();
         var sighting = new SightingViewModel();
