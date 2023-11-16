@@ -50,6 +50,11 @@
       <label for="Description">Description:</label>
       <textarea class="form-control" asp-for="Sighting!.Description"></textarea>
     </div>
+
+    <div class="my-2">
+      <label for="Sighting!.PhotoUrl">Photo:</label>
+      <input class="form-control" asp-for="Sighting!.PhotoUrl" type="text" />
+    </div>
     <button type="submit" class="my-2 btn btn-primary">Submit</button>
   </form>
 </section>
