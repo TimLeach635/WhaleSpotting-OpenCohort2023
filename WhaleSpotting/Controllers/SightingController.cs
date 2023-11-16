@@ -123,4 +123,10 @@ public class SightingController : Controller
         };
         return View(viewModel);
     }
+
+    [HttpGet("submitted")]
+    public IActionResult SightingSubmitted()
+    {
+        return View();
+    }
 }
