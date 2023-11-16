@@ -30,7 +30,10 @@
                         </label>
                     </div>
                 </section>
-                <button onclick="deleteSighting(@sighting.Id)" style="background-color: darkred; color: white;">🗑️</button>
+                <button type="button" class="btn btn-outline-danger btn-sm" onclick="deleteSighting(@sighting.Id)">
+                    <i class="bi bi-trash"></i> Delete
+                </button>
+
             </li>
             }
         </ul>
