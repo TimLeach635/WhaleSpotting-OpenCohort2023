@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace WhaleSpotting.Controllers;
 
 [Authorize(Roles = "Admin")]
+[Route("admin")]
 public class AdminController : Controller
 {
     private readonly ILogger<AdminController> _logger;
@@ -27,6 +28,7 @@ public class AdminController : Controller
         _userManager = userManager;
     }
 
+    [HttpGet("")]
     public IActionResult Index()
     {
         if (User.Identity!.IsAuthenticated)
@@ -45,7 +47,7 @@ public class AdminController : Controller
         return View(unapprovedSightings);
     }
 
-    [HttpPost]
+    [HttpPost("approve")]
     public IActionResult ApproveSightings(List<int> selectedSightingIds)
     {
         if (User.Identity!.IsAuthenticated)
@@ -72,12 +74,13 @@ public class AdminController : Controller
         return RedirectToAction("Index");
     }
 
+    [HttpGet("assign")]
     public IActionResult AssignAdmin()
     {
         return View();
     }
 
-    [HttpPost("")]
+    [HttpPost("assign")]
     public async Task<IActionResult> CheckInput([FromForm] string userinput) 
     {
         var users = _context.WsUsers!
@@ -92,5 +95,27 @@ public class AdminController : Controller
         } 
         
         return RedirectToAction("AssignAdmin");
+    }
+
+    [HttpDelete("sighting/{sightingId}")]
+    public IActionResult DeleteSighting([FromRoute] int sightingId)
+    {
+        Sighting sighting;
+        try
+        {
+            sighting = _context.Sightings!
+                .Include(s => s.Photos)
+                .Single(s => s.Id == sightingId);
+        }
+        catch (InvalidOperationException)
+        {
+            // This means there is no sighting with the given ID
+            return NotFound();
+        }
+
+        _context.Sightings!.Remove(sighting);
+        _context.SaveChanges();
+
+        return Ok();
     }
 }
