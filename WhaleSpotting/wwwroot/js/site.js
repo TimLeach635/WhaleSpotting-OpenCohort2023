@@ -1,11 +1,11 @@
 ﻿let currentIndex = 0;
-const slides = document.querySelectorAll('.slide');
+const slides = document.querySelectorAll('.recent-photos__slide');
   
 function showSlide(index) {
   slides.forEach((slide) => {
-    slide.classList.remove('active');
+    slide.classList.remove('recent-photos__active');
   });
-  slides[index].classList.add('active');
+  slides[index].classList.add('recent-photos__active');
 }
 
 function firstSlide() {

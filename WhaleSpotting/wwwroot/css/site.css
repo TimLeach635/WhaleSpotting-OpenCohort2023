@@ -17,32 +17,77 @@ body {
   margin-bottom: 60px;
 }
 
+.whale-links {
+  float: left;
+  width: 50%;
+  padding: 30px;
+  margin-bottom: 1rem;
+}
+
 .home-page-action-button {
-  height: 200px;
-  line-height: 200px;
-  width: 330px;
+  width: 22vw;
+  height: 20vh;
   border-radius: 6px;
-  margin-top: 40px;
-  padding: 0;
+  transition: 0.3s;
+  margin: auto;
+  text-decoration: none;
+  color: aliceblue;
+  font-size: 1.1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
+  object-fit: cover;
+  background-position: center; 
+  background-size: cover;
 }
 
-.btn1 {
-  margin-right: 250px;
-}
-
-.btn1 {
-  margin-right: 250px;
+.home-page-action-button:hover {
+  opacity: 0.7;
 }
 
 .card-img-top {
   height: 30vh;
-  
-  }
+}
 
-  * {box-sizing:border-box}
+.species-list {
+  justify-content: center;
+  align-items: center;
+}
 
-.prev, .next {
+.species-list-item {
+  flex: 0 0 361px;
+}
+
+main {
+  padding-bottom: 6rem;
+}
+
+.uniqueSpecies-photo {
+  width: 75%;
+  height: auto;
+  border-radius: 6px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40px;
+  margin-bottom: 30px;
+}
+
+.uniqueSpecies-title {
+  text-align: center;
+  font-weight: bold;
+  font-size: 5vw;
+  padding-bottom: 30px;
+}
+
+.uniqueSpecies-text {
+  font-size: larger;
+}
+
+* {box-sizing:border-box}
+
+.recent-photos__prev, .recent-photos__next {
   cursor: pointer;
   position: absolute;
   top: 50%;
@@ -57,33 +102,32 @@ body {
   user-select: none;
 }
 
-.next {
+.recent-photos__next {
   right: 0;
   border-radius: 3px 0 0 3px;
 }
 
-.prev:hover, .next:hover {
+.recent-photos__prev:hover, .recent-photos__next:hover {
   background-color: rgba(0,0,0,0.8);
 }
 
-.slideshow {
+.recent-photos__slideshow {
   display: block;
   max-width: 500px;
   margin: auto;
-  overflow: hidden;
   position: relative;
 }
 
-.slide {
+.recent-photos__slide {
   display: none;
   width: 100%;
 }
 
-.active {
+.recent-photos__active {
   display: block;
 }
 
-.dot {
+.recent-photos__dot {
   height: 15px;
   width: 15px;
   margin: 0 5px;
@@ -94,6 +138,6 @@ body {
   transition: background-color 0.6s ease;
 }
 
-.dot.active {
+.recent-photos__dot.recent-photos__active {
   background-color: #717171;
 }

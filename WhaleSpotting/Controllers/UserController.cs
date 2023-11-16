@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WhaleSpotting.Data;
@@ -11,27 +12,45 @@ public class UserController : Controller
 {
     private readonly ILogger<UserController> _logger;
     private readonly ApplicationDbContext _context;
-    public UserController(ILogger<UserController> logger, ApplicationDbContext context)
-    {
+    private readonly UserManager<IdentityUser> _userManager;
+    public UserController
+    (
+        ILogger<UserController> logger,
+        ApplicationDbContext context,
+        UserManager<IdentityUser> userManager
+    ) {
         _logger = logger;
         _context = context;
+        _userManager = userManager;
     }
 
     [HttpGet("{id}")]
     public IActionResult UserPage([FromRoute] int id)
     {
+        if (User.Identity!.IsAuthenticated)
+        {
+            var wsUser = _context.WsUsers!
+                .Single(u => u.IdentityUser!.Id == _userManager.GetUserId(User));
+            ViewData["WsUserId"] = wsUser.Id;
+        }
+
         var user = _context.WsUsers!
             .Include(u => u.Sightings)
             .Single(u => u.Id == id);
 
-    
-           return View(user); 
-        
+        return View(user);  
     }
 
     [HttpGet("{id}/edit")]
     public IActionResult EditUserForm(int id)
     {
+        if (User.Identity!.IsAuthenticated)
+        {
+            var wsUser = _context.WsUsers!
+                .Single(u => u.IdentityUser!.Id == _userManager.GetUserId(User));
+            ViewData["WsUserId"] = wsUser.Id;
+        }
+
         var user = _context.WsUsers!.Find(id);
         return View(user);
     }
@@ -42,6 +61,13 @@ public class UserController : Controller
         [FromRoute] int id,
         [FromForm] WsUser modifiedUser
     ) {
+        if (User.Identity!.IsAuthenticated)
+        {
+            var wsUser = _context.WsUsers!
+                .Single(u => u.IdentityUser!.Id == _userManager.GetUserId(User));
+            ViewData["WsUserId"] = wsUser.Id;
+        }
+
         var user = _context.WsUsers!
             .Single(u => u.Id == id);
 

@@ -1,4 +1,6 @@
 @model WhaleSpotting.ViewModels.NewSightingFormViewModel
+@using System.Security.Claims
+@using WhaleSpotting.ViewModels
 
 
 @{
@@ -10,6 +12,13 @@
 </div>
 
 <section>
+  @if (TempData.ContainsKey("ConfirmationMessage"))
+    {
+        <div class="alert alert-success" role="alert">
+            @TempData["ConfirmationMessage"]
+        </div>
+    }
+
   <form method="post" asp-controller="Sighting" asp-action="NewSighting">
     <div class="col-md-4">
       <label for="Whale">Whale:</label>
@@ -21,6 +30,11 @@
         }
       </select>
     </div>
+
+    @if (User.Identity.IsAuthenticated)
+        {
+            <input type="hidden" asp-for="Sighting!.User.Id" value="@User.FindFirstValue(ClaimTypes.NameIdentifier)" />
+        }
     
     <div class="my-2">
       <label for="Latitude">Latitude:</label>
@@ -33,7 +47,7 @@
     </div>
 
     <div class="my-2">
-      <label for="Date">Date:</label>
+      <label for="Date">Date :</label>
       <input class="form-control" asp-for="Sighting!.Date" type="date" />
     </div>
 

@@ -3,10 +3,14 @@
     ViewData["Title"] = Model.Name;
 }
 
-<div class="card mb-3">
-  <img src="@Model.PhotoUrl" class="card-img-top" alt="@Model.Name photo">
-  <div class="card-body">
-    <h5 class="card-title">@Model.Name</h5>
-    <p class="card-text">@Model.Description</p>
+<button style="background-color: rgb(233, 70, 70); border-radius: 8px; top: 10px; left: 10px">
+  <a class="nav-link text-dark" asp-area="" asp-controller="Species" asp-action="Index">Back</a>
+</button>
+
+<div>
+  <img src="@Model.PhotoUrl" class="uniqueSpecies-photo" alt="@Model.Name photo">
+  <div>
+    <h1 class="uniqueSpecies-title">@Model.Name</h1>
+    <p class="uniqueSpecies-text">@Model.Description</p>
   </div>
 </div>
