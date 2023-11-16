@@ -7,13 +7,19 @@
 <div class="text-center">
     <h1>Admin - Assign Admin Role to User</h1>
     <form method="get">        
-        <label>Email:</label>
+        <label>Name:</label>
         <input type="text" name="userInput" />
         <input type="submit" value="Submit" />
     </form>   
 </div>
 
 @{
-    string email = Context.Request.Query["userInput"];
-    Console.WriteLine(email);
+    string userInput = Context.Request.Query["userInput"];    
+    foreach(var user in Model)
+    {
+        if(user.Name == userInput)
+        {
+            Console.WriteLine(user.Name);
+        }
+    }
 }
