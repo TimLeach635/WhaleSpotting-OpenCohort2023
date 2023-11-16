@@ -1,0 +1,14 @@
+﻿@model List<WsUser>;
+
+@{
+    ViewData["Title"] = "Assign Admin Role to User";
+}
+
+<div class="text-center">
+    <h1>Admin - Assign Admin Role to User</h1>
+    <form method="post" asp-controller="Admin" asp-action="CheckInput">        
+        <label>Name:</label>
+        <input type="text" name="userInput" />
+        <input type="submit" value="Submit" />
+    </form>   
+</div>
