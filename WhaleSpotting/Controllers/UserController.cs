@@ -88,6 +88,6 @@ public class UserController : Controller
 
         _context.SaveChanges();
 
-        return Ok();
+        return RedirectToAction("UserPage", new RouteValueDictionary { { "id", id } });
     }
 }
